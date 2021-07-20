@@ -1,0 +1,2 @@
+# PIC18_GPSboard
+PIC18F26Q84 convert NMEA GPS over UART to CAN-FD
