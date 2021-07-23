@@ -1,0 +1,2765 @@
+
+
+Microchip MPLAB XC8 Assembler V2.32 build 20210201212658 
+                                                                                               Fri Jul 23 16:16:46 2021
+
+Microchip MPLAB XC8 C Compiler v2.32 (Free license) build 20210201212658 Og1 
+     1                           	processor	18F26Q84
+     2                           	fnconf	rparam,??,?,0
+     3                           	pagewidth 120
+     4                           	opt	flic
+     5                           	psect	cinit,global,reloc=2,class=CODE,delta=1
+     6                           	psect	bssCOMRAM,global,class=COMRAM,space=1,delta=1,lowdata,noexec
+     7                           	psect	cstackCOMRAM,global,class=COMRAM,space=1,delta=1,lowdata,noexec
+     8                           	psect	text0,global,reloc=2,class=CODE,delta=1
+     9                           	psect	text1,global,reloc=2,class=CODE,delta=1
+    10                           	psect	text2,global,reloc=2,class=CODE,delta=1
+    11                           	psect	text3,global,reloc=2,class=CODE,delta=1
+    12                           	psect	text4,global,reloc=2,class=CODE,delta=1
+    13                           	psect	text5,global,reloc=2,class=CODE,delta=1
+    14                           	psect	text6,global,reloc=2,class=CODE,delta=1
+    15                           	psect	text7,global,reloc=2,class=CODE,delta=1
+    16                           	psect	text8,global,reloc=2,class=CODE,delta=1
+    17                           	psect	text9,global,reloc=2,class=CODE,delta=1
+    18                           	psect	text10,global,reloc=2,class=CODE,delta=1
+    19                           	psect	text11,global,reloc=2,class=CODE,delta=1
+    20                           	psect	text12,global,reloc=2,class=CODE,delta=1
+    21                           	psect	text13,global,reloc=2,class=CODE,delta=1
+    22                           	psect	ivt0x8,global,reloc=2,class=CODE,delta=1,noexec,keep,optim=
+    23                           	psect	intsave_regs,global,class=BIGRAM,space=1,delta=1,noexec
+    24                           	psect	rparam,global,class=COMRAM,space=1,delta=1,noexec
+    25                           	psect	idloc,global,abs,ovrld,class=IDLOC,space=5,delta=1,noexec
+    26                           	psect	config,global,abs,ovrld,class=CONFIG,space=4,delta=1,noexec
+    27  0000                     
+    28                           ; Version 2.35
+    29                           ; Generated 04/06/2021 GMT
+    30                           ; 
+    31                           ; Copyright © 2021, Microchip Technology Inc. and its subsidiaries ("Microchip")
+    32                           ; All rights reserved.
+    33                           ; 
+    34                           ; This software is developed by Microchip Technology Inc. and its subsidiaries ("Microch
+      +                          ip").
+    35                           ; 
+    36                           ; Redistribution and use in source and binary forms, with or without modification, are
+    37                           ; permitted provided that the following conditions are met:
+    38                           ; 
+    39                           ;     1. Redistributions of source code must retain the above copyright notice, this lis
+      +                          t of
+    40                           ;        conditions and the following disclaimer.
+    41                           ; 
+    42                           ;     2. Redistributions in binary form must reproduce the above copyright notice, this 
+      +                          list
+    43                           ;        of conditions and the following disclaimer in the documentation and/or other
+    44                           ;        materials provided with the distribution. Publication is not required when
+    45                           ;        this file is used in an embedded application.
+    46                           ; 
+    47                           ;     3. Microchip's name may not be used to endorse or promote products derived from th
+      +                          is
+    48                           ;        software without specific prior written permission.
+    49                           ; 
+    50                           ; THIS SOFTWARE IS PROVIDED BY MICROCHIP "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+    51                           ; INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS F
+      +                          OR
+    52                           ; PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL MICROCHIP BE LIABLE FOR ANY DIRECT, INDIREC
+      +                          T,
+    53                           ; INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING BUT NOT LIMITED TO
+    54                           ; PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA OR PROFITS; OR BUSINESS
+    55                           ; INTERRUPTION) HOWSOEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, ST
+      +                          RICT
+    56                           ; LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE U
+      +                          SE OF
+    57                           ; THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+    58                           ; 
+    59                           ; 
+    60                           ; Code-generator required, PIC18F26Q84 Definitions
+    61                           ; 
+    62                           ; SFR Addresses
+    63  0000                     _PMD8	set	104
+    64  0000                     _PMD7	set	103
+    65  0000                     _PMD6	set	102
+    66  0000                     _PMD5	set	101
+    67  0000                     _PMD4	set	100
+    68  0000                     _PMD3	set	99
+    69  0000                     _PMD2	set	98
+    70  0000                     _PMD1	set	97
+    71  0000                     _PMD0	set	96
+    72  0000                     _OSCEN	set	179
+    73  0000                     _OSCFRQ	set	177
+    74  0000                     _OSCTUNE	set	176
+    75  0000                     _OSCCON3	set	175
+    76  0000                     _OSCCON1	set	173
+    77  0000                     _C1FIFOBA	set	332
+    78  0000                     _C1FIFOCON1T	set	351
+    79  0000                     _C1FIFOCON1U	set	350
+    80  0000                     _C1FIFOCON1H	set	349
+    81  0000                     _C1FIFOCON1L	set	348
+    82  0000                     _C1NBTCFGT	set	263
+    83  0000                     _C1NBTCFGU	set	262
+    84  0000                     _C1NBTCFGH	set	261
+    85  0000                     _C1NBTCFGL	set	260
+    86  0000                     _C1CONU	set	258
+    87  0000                     _C1CONH	set	257
+    88  0000                     _C1CONL	set	256
+    89  0000                     _C1CONHbits	set	257
+    90  0000                     _C1CONUbits	set	258
+    91  0000                     _C1INTHbits	set	285
+    92  0000                     _C1CONTbits	set	259
+    93  0000                     _U1BRGH	set	687
+    94  0000                     _U1BRGL	set	686
+    95  0000                     _U1FIFO	set	688
+    96  0000                     _U1UIR	set	689
+    97  0000                     _U1ERRIE	set	691
+    98  0000                     _U1ERRIR	set	690
+    99  0000                     _U1CON2	set	685
+   100  0000                     _U1CON1	set	684
+   101  0000                     _U1CON0	set	683
+   102  0000                     _U1P3H	set	682
+   103  0000                     _U1P3L	set	681
+   104  0000                     _U1P2H	set	680
+   105  0000                     _U1P2L	set	679
+   106  0000                     _U1P1H	set	678
+   107  0000                     _U1P1L	set	677
+   108  0000                     _RC7PPS	set	536
+   109  0000                     _U1RXPPS	set	626
+   110  0000                     _RB4PPS	set	525
+   111  0000                     _CANRXPPS	set	573
+   112  0000                     _T0CON0	set	794
+   113  0000                     _TMR0L	set	792
+   114  0000                     _TMR0H	set	793
+   115  0000                     _T0CON1	set	795
+   116  0000                     _ODCONC	set	1042
+   117  0000                     _ODCONB	set	1034
+   118  0000                     _ODCONA	set	1026
+   119  0000                     _SLRCONC	set	1043
+   120  0000                     _SLRCONB	set	1035
+   121  0000                     _SLRCONA	set	1027
+   122  0000                     _INLVLE	set	1060
+   123  0000                     _INLVLC	set	1044
+   124  0000                     _INLVLB	set	1036
+   125  0000                     _INLVLA	set	1028
+   126  0000                     _WPUC	set	1041
+   127  0000                     _WPUA	set	1025
+   128  0000                     _WPUB	set	1033
+   129  0000                     _WPUE	set	1057
+   130  0000                     _ANSELA	set	1024
+   131  0000                     _ANSELB	set	1032
+   132  0000                     _ANSELC	set	1040
+   133  0000                     _TRISC	set	1224
+   134  0000                     _TRISB	set	1223
+   135  0000                     _TRISA	set	1222
+   136  0000                     _TRISE	set	1226
+   137  0000                     _LATC	set	1216
+   138  0000                     _LATB	set	1215
+   139  0000                     _LATA	set	1214
+   140  0000                     _INTCON0bits	set	1238
+   141  0000                     _PIR4bits	set	1202
+   142  0000                     _PIE4bits	set	1186
+   143  0000                     _PIE3bits	set	1185
+   144  0000                     _PIR3bits	set	1201
+   145                           
+   146                           ; #config settings
+   147                           
+   148                           	psect	cinit
+   149  0002D4                     __pcinit:
+   150                           	callstack 0
+   151  0002D4                     start_initialization:
+   152                           	callstack 0
+   153  0002D4                     __initialization:
+   154                           	callstack 0
+   155                           
+   156                           ; Clear objects allocated to COMRAM (22 bytes)
+   157  0002D4  EE01  F101         	lfsr	0,__pbssCOMRAM
+   158  0002D8  0E16               	movlw	22
+   159  0002DA                     clear_0:
+   160  0002DA  6AEE               	clrf	postinc0,c
+   161  0002DC  06E8               	decf	wreg,f,c
+   162  0002DE  E1FD               	bnz	clear_0
+   163                           
+   164                           ;
+   165                           ; Setup IVTBASE
+   166                           ;
+   167  0002E0  0104               	movlb	4
+   168  0002E2  0E08               	movlw	(ivt0x8_base shr 0)& (0+255)
+   169  0002E4  6F5D               	movwf	93,b
+   170  0002E6  0E00               	movlw	(ivt0x8_base shr (0+8))& (0+255)
+   171  0002E8  6F5E               	movwf	94,b
+   172  0002EA  0E00               	movlw	(ivt0x8_base shr (0+16))& (0+255)
+   173  0002EC  6F5F               	movwf	95,b
+   174  0002EE                     end_of_initialization:
+   175                           	callstack 0
+   176  0002EE                     __end_of__initialization:
+   177                           	callstack 0
+   178  0002EE  0100               	movlb	0
+   179  0002F0  EFDD  F000         	goto	_main	;jump to C main() function
+   180                           
+   181                           	psect	bssCOMRAM
+   182  000501                     __pbssCOMRAM:
+   183                           	callstack 0
+   184  000501                     _canMsg:
+   185                           	callstack 0
+   186  000501                     	ds	16
+   187  000511                     _fifoAddr:
+   188                           	callstack 0
+   189  000511                     	ds	4
+   190  000515                     _measure_flag:
+   191                           	callstack 0
+   192  000515                     	ds	1
+   193  000516                     _received_flag:
+   194                           	callstack 0
+   195  000516                     	ds	1
+   196                           
+   197                           	psect	cstackCOMRAM
+   198  000517                     __pcstackCOMRAM:
+   199                           	callstack 0
+   200  000517                     canSetOP@i:
+   201                           	callstack 0
+   202  000517                     canReceive@fifoAddr:
+   203                           	callstack 0
+   204                           
+   205                           ; 4 bytes @ 0x0
+   206  000517                     	ds	2
+   207  000519                     canSetOP@success:
+   208                           	callstack 0
+   209                           
+   210                           ; 1 bytes @ 0x2
+   211  000519                     	ds	1
+   212  00051A                     canSetOP@code:
+   213                           	callstack 0
+   214                           
+   215                           ; 1 bytes @ 0x3
+   216  00051A                     	ds	1
+   217  00051B                     canInit@complete:
+   218                           	callstack 0
+   219  00051B                     canReceive@FIFO:
+   220                           	callstack 0
+   221                           
+   222                           ; 2 bytes @ 0x4
+   223  00051B                     	ds	1
+   224  00051C                     boardInit@success:
+   225                           	callstack 0
+   226                           
+   227                           ; 1 bytes @ 0x5
+   228  00051C                     	ds	1
+   229  00051D                     canReceive@i:
+   230                           	callstack 0
+   231                           
+   232                           ; 2 bytes @ 0x6
+   233  00051D                     	ds	2
+   234  00051F                     main@setup:
+   235                           	callstack 0
+   236                           
+   237                           ; 1 bytes @ 0x8
+   238  00051F                     	ds	1
+   239                           
+   240 ;;
+   241 ;;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
+   242 ;;
+   243 ;; *************** function _main *****************
+   244 ;; Defined at:
+   245 ;;		line 191 in file "main.c"
+   246 ;; Parameters:    Size  Location     Type
+   247 ;;		None
+   248 ;; Auto vars:     Size  Location     Type
+   249 ;;  setup           1    8[COMRAM] _Bool 
+   250 ;; Return value:  Size  Location     Type
+   251 ;;                  1    wreg      void 
+   252 ;; Registers used:
+   253 ;;		wreg, fsr1l, fsr1h, fsr2l, fsr2h, status,2, status,0, cstack
+   254 ;; Tracked objects:
+   255 ;;		On entry : 0/0
+   256 ;;		On exit  : 0/0
+   257 ;;		Unchanged: 0/0
+   258 ;; Data sizes:     COMRAM   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK11  BANK12  BANK13  BANK14  BANK15  BANK1
+      +6  BANK17  BANK18  BANK19  BANK20  BANK21  BANK22  BANK23  BANK24  BANK25  BANK26  BANK27  BANK28  BANK29  BANK30  BANK3
+      +1  BANK32  BANK33  BANK34  BANK35  BANK36  BANK37
+   259 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0
+   260 ;;      Locals:         1       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0
+   261 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0
+   262 ;;      Totals:         1       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0
+   263 ;;Total ram usage:        1 bytes
+   264 ;; Hardware stack levels required when called: 5
+   265 ;; This function calls:
+   266 ;;		_boardInit
+   267 ;;		_canReceive
+   268 ;; This function is called by:
+   269 ;;		Startup code after reset
+   270 ;; This function uses a non-reentrant model
+   271 ;;
+   272                           
+   273                           	psect	text0
+   274  0001BA                     __ptext0:
+   275                           	callstack 0
+   276  0001BA                     _main:
+   277                           	callstack 122
+   278  0001BA                     
+   279                           ;main.c: 193:     _Bool setup = boardInit();
+   280  0001BA  EC59  F001         	call	_boardInit	;wreg free
+   281  0001BE  6E1F               	movwf	main@setup^(0+1280),c
+   282  0001C0                     l1058:
+   283                           
+   284                           ;main.c: 195:     {;main.c: 196:         if (received_flag && setup)
+   285  0001C0  5016               	movf	_received_flag^(0+1280),w,c
+   286  0001C2  B4D8               	btfsc	status,2,c
+   287  0001C4  EFE6  F000         	goto	u101
+   288  0001C8  EFE8  F000         	goto	u100
+   289  0001CC                     u101:
+   290  0001CC  EFF4  F000         	goto	l1066
+   291  0001D0                     u100:
+   292  0001D0  501F               	movf	main@setup^(0+1280),w,c
+   293  0001D2  B4D8               	btfsc	status,2,c
+   294  0001D4  EFEE  F000         	goto	u111
+   295  0001D8  EFF0  F000         	goto	u110
+   296  0001DC                     u111:
+   297  0001DC  EFF4  F000         	goto	l1066
+   298  0001E0                     u110:
+   299  0001E0                     
+   300                           ;main.c: 197:         {;main.c: 198:             canReceive();
+   301  0001E0  EC77  F000         	call	_canReceive	;wreg free
+   302  0001E4                     
+   303                           ;main.c: 199:             received_flag = 0;
+   304  0001E4  0E00               	movlw	0
+   305  0001E6  6E16               	movwf	_received_flag^(0+1280),c
+   306  0001E8                     l1066:
+   307                           
+   308                           ;main.c: 201:         if (measure_flag)
+   309  0001E8  5015               	movf	_measure_flag^(0+1280),w,c
+   310  0001EA  B4D8               	btfsc	status,2,c
+   311  0001EC  EFFA  F000         	goto	u121
+   312  0001F0  EFFC  F000         	goto	u120
+   313  0001F4                     u121:
+   314  0001F4  EFE0  F000         	goto	l1058
+   315  0001F8                     u120:
+   316  0001F8                     
+   317                           ;main.c: 202:         {;main.c: 203:             measure_flag = 0;
+   318  0001F8  0E00               	movlw	0
+   319  0001FA  6E15               	movwf	_measure_flag^(0+1280),c
+   320  0001FC  EFE0  F000         	goto	l1058
+   321  000200  EF0D  F000         	goto	start
+   322  000204                     __end_of_main:
+   323                           	callstack 0
+   324                           
+   325 ;; *************** function _canReceive *****************
+   326 ;; Defined at:
+   327 ;;		line 8 in file "C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/can.c"
+   328 ;; Parameters:    Size  Location     Type
+   329 ;;		None
+   330 ;; Auto vars:     Size  Location     Type
+   331 ;;  i               2    6[COMRAM] int 
+   332 ;;  fifoAddr        4    0[COMRAM] unsigned long 
+   333 ;;  FIFO            2    4[COMRAM] PTR unsigned char 
+   334 ;;		 -> RAM(9727), 
+   335 ;; Return value:  Size  Location     Type
+   336 ;;                  1    wreg      void 
+   337 ;; Registers used:
+   338 ;;		wreg, fsr1l, fsr1h, fsr2l, fsr2h, status,2, status,0
+   339 ;; Tracked objects:
+   340 ;;		On entry : 0/0
+   341 ;;		On exit  : 0/0
+   342 ;;		Unchanged: 0/0
+   343 ;; Data sizes:     COMRAM   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK11  BANK12  BANK13  BANK14  BANK15  BANK1
+      +6  BANK17  BANK18  BANK19  BANK20  BANK21  BANK22  BANK23  BANK24  BANK25  BANK26  BANK27  BANK28  BANK29  BANK30  BANK3
+      +1  BANK32  BANK33  BANK34  BANK35  BANK36  BANK37
+   344 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0
+   345 ;;      Locals:         8       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0
+   346 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0
+   347 ;;      Totals:         8       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0
+   348 ;;Total ram usage:        8 bytes
+   349 ;; Hardware stack levels used: 1
+   350 ;; Hardware stack levels required when called: 2
+   351 ;; This function calls:
+   352 ;;		Nothing
+   353 ;; This function is called by:
+   354 ;;		_main
+   355 ;; This function uses a non-reentrant model
+   356 ;;
+   357                           
+   358                           	psect	text1
+   359  0000EE                     __ptext1:
+   360                           	callstack 0
+   361  0000EE                     _canReceive:
+   362                           	callstack 124
+   363  0000EE                     
+   364                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/can.c: 10:  
+      +                             uint32_t fifoAddr = C1FIFOBA;
+   365  0000EE  0060 F530  F517    	movff	332,canReceive@fifoAddr	;volatile
+   366  0000F4  0060 F534  F518    	movff	333,canReceive@fifoAddr+1	;volatile
+   367  0000FA  0060 F538  F519    	movff	334,canReceive@fifoAddr+2	;volatile
+   368  000100  0060 F53C  F51A    	movff	335,canReceive@fifoAddr+3	;volatile
+   369  000106                     
+   370                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/can.c: 11:  
+      +                             uint8_t * FIFO = fifoAddr;
+   371  000106  C517  F51B         	movff	canReceive@fifoAddr,canReceive@FIFO
+   372  00010A  C518  F51C         	movff	canReceive@fifoAddr+1,canReceive@FIFO+1
+   373  00010E                     
+   374                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/can.c: 12:  
+      +                             for(int i = 0; i < 16; i++)
+   375  00010E  0E00               	movlw	0
+   376  000110  6E1E               	movwf	(canReceive@i+1)^(0+1280),c
+   377  000112  0E00               	movlw	0
+   378  000114  6E1D               	movwf	canReceive@i^(0+1280),c
+   379  000116                     l1036:
+   380                           
+   381                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/can.c: 13:  
+      +                             {;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/can.c: 1
+      +                          4:         canMsg[i] = FIFO[i];
+   382  000116  501D               	movf	canReceive@i^(0+1280),w,c
+   383  000118  241B               	addwf	canReceive@FIFO^(0+1280),w,c
+   384  00011A  6ED9               	movwf	fsr2l,c
+   385  00011C  501E               	movf	(canReceive@i+1)^(0+1280),w,c
+   386  00011E  201C               	addwfc	(canReceive@FIFO+1)^(0+1280),w,c
+   387  000120  6EDA               	movwf	fsr2h,c
+   388  000122  0E01               	movlw	low _canMsg
+   389  000124  241D               	addwf	canReceive@i^(0+1280),w,c
+   390  000126  6EE1               	movwf	fsr1l,c
+   391  000128  0E05               	movlw	high _canMsg
+   392  00012A  201E               	addwfc	(canReceive@i+1)^(0+1280),w,c
+   393  00012C  6EE2               	movwf	fsr1h,c
+   394  00012E  C4DF F4E7          	movff	indf2,indf1
+   395  000132                     
+   396                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/can.c: 15:  
+      +                             }
+   397  000132  4A1D               	infsnz	canReceive@i^(0+1280),f,c
+   398  000134  2A1E               	incf	(canReceive@i+1)^(0+1280),f,c
+   399  000136  BE1E               	btfsc	(canReceive@i+1)^(0+1280),7,c
+   400  000138  EFA7  F000         	goto	u51
+   401  00013C  501E               	movf	(canReceive@i+1)^(0+1280),w,c
+   402  00013E  E109               	bnz	u50
+   403  000140  0E10               	movlw	16
+   404  000142  5C1D               	subwf	canReceive@i^(0+1280),w,c
+   405  000144  A0D8               	btfss	status,0,c
+   406  000146  EFA7  F000         	goto	u51
+   407  00014A  EFA9  F000         	goto	u50
+   408  00014E                     u51:
+   409  00014E  EF8B  F000         	goto	l1036
+   410  000152                     u50:
+   411  000152  0012               	return		;funcret
+   412  000154                     __end_of_canReceive:
+   413                           	callstack 0
+   414                           
+   415 ;; *************** function _boardInit *****************
+   416 ;; Defined at:
+   417 ;;		line 185 in file "C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c"
+   418 ;; Parameters:    Size  Location     Type
+   419 ;;		None
+   420 ;; Auto vars:     Size  Location     Type
+   421 ;;  success         1    5[COMRAM] _Bool 
+   422 ;; Return value:  Size  Location     Type
+   423 ;;                  1    wreg      _Bool 
+   424 ;; Registers used:
+   425 ;;		wreg, status,2, status,0, cstack
+   426 ;; Tracked objects:
+   427 ;;		On entry : 0/0
+   428 ;;		On exit  : 0/0
+   429 ;;		Unchanged: 0/0
+   430 ;; Data sizes:     COMRAM   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK11  BANK12  BANK13  BANK14  BANK15  BANK1
+      +6  BANK17  BANK18  BANK19  BANK20  BANK21  BANK22  BANK23  BANK24  BANK25  BANK26  BANK27  BANK28  BANK29  BANK30  BANK3
+      +1  BANK32  BANK33  BANK34  BANK35  BANK36  BANK37
+   431 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0
+   432 ;;      Locals:         1       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0
+   433 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0
+   434 ;;      Totals:         1       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0
+   435 ;;Total ram usage:        1 bytes
+   436 ;; Hardware stack levels used: 1
+   437 ;; Hardware stack levels required when called: 4
+   438 ;; This function calls:
+   439 ;;		_canInit
+   440 ;;		_interruptInit
+   441 ;;		_oscInit
+   442 ;;		_pmdInit
+   443 ;;		_portInit
+   444 ;;		_timerInit
+   445 ;;		_uartInit
+   446 ;; This function is called by:
+   447 ;;		_main
+   448 ;; This function uses a non-reentrant model
+   449 ;;
+   450                           
+   451                           	psect	text2
+   452  0002B2                     __ptext2:
+   453                           	callstack 0
+   454  0002B2                     _boardInit:
+   455                           	callstack 122
+   456  0002B2                     
+   457                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           186:     interruptInit();
+   458  0002B2  EC8F  F001         	call	_interruptInit	;wreg free
+   459  0002B6                     
+   460                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           187:     portInit();
+   461  0002B6  ECAA  F000         	call	_portInit	;wreg free
+   462  0002BA                     
+   463                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           188:     pmdInit();
+   464  0002BA  EC47  F001         	call	_pmdInit	;wreg free
+   465  0002BE                     
+   466                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           189:     oscInit();
+   467  0002BE  EC7A  F001         	call	_oscInit	;wreg free
+   468  0002C2                     
+   469                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           190:     uartInit();
+   470  0002C2  EC27  F001         	call	_uartInit	;wreg free
+   471  0002C6                     
+   472                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           191:     _Bool success = canInit();
+   473  0002C6  EC0F  F000         	call	_canInit	;wreg free
+   474  0002CA  6E1C               	movwf	boardInit@success^(0+1280),c
+   475  0002CC                     
+   476                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           192:     timerInit();
+   477  0002CC  EC86  F001         	call	_timerInit	;wreg free
+   478  0002D0                     
+   479                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           193:     return success;
+   480  0002D0  501C               	movf	boardInit@success^(0+1280),w,c
+   481  0002D2  0012               	return		;funcret
+   482  0002D4                     __end_of_boardInit:
+   483                           	callstack 0
+   484                           
+   485 ;; *************** function _uartInit *****************
+   486 ;; Defined at:
+   487 ;;		line 92 in file "C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c"
+   488 ;; Parameters:    Size  Location     Type
+   489 ;;		None
+   490 ;; Auto vars:     Size  Location     Type
+   491 ;;		None
+   492 ;; Return value:  Size  Location     Type
+   493 ;;                  1    wreg      void 
+   494 ;; Registers used:
+   495 ;;		wreg, status,2
+   496 ;; Tracked objects:
+   497 ;;		On entry : 0/0
+   498 ;;		On exit  : 0/0
+   499 ;;		Unchanged: 0/0
+   500 ;; Data sizes:     COMRAM   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK11  BANK12  BANK13  BANK14  BANK15  BANK1
+      +6  BANK17  BANK18  BANK19  BANK20  BANK21  BANK22  BANK23  BANK24  BANK25  BANK26  BANK27  BANK28  BANK29  BANK30  BANK3
+      +1  BANK32  BANK33  BANK34  BANK35  BANK36  BANK37
+   501 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0
+   502 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0
+   503 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0
+   504 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0
+   505 ;;Total ram usage:        0 bytes
+   506 ;; Hardware stack levels used: 1
+   507 ;; Hardware stack levels required when called: 2
+   508 ;; This function calls:
+   509 ;;		Nothing
+   510 ;; This function is called by:
+   511 ;;		_boardInit
+   512 ;; This function uses a non-reentrant model
+   513 ;;
+   514                           
+   515                           	psect	text3
+   516  00024E                     __ptext3:
+   517                           	callstack 0
+   518  00024E                     _uartInit:
+   519                           	callstack 123
+   520  00024E                     
+   521                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           94:     U1P1L = 0x00;
+   522  00024E  0E00               	movlw	0
+   523  000250  0102               	movlb	2	; () banked
+   524  000252  6FA5               	movwf	165,b	;volatile
+   525                           
+   526                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           95:     U1P1H = 0x00;
+   527  000254  0E00               	movlw	0
+   528  000256  6FA6               	movwf	166,b	;volatile
+   529                           
+   530                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           96:     U1P2L = 0x00;
+   531  000258  0E00               	movlw	0
+   532  00025A  6FA7               	movwf	167,b	;volatile
+   533                           
+   534                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           97:     U1P2H = 0x00;
+   535  00025C  0E00               	movlw	0
+   536  00025E  6FA8               	movwf	168,b	;volatile
+   537                           
+   538                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           98:     U1P3L = 0x00;
+   539  000260  0E00               	movlw	0
+   540  000262  6FA9               	movwf	169,b	;volatile
+   541                           
+   542                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           99:     U1P3H = 0x00;
+   543  000264  0E00               	movlw	0
+   544  000266  6FAA               	movwf	170,b	;volatile
+   545                           
+   546                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           101:     U1CON0 = 0xB0;
+   547  000268  0EB0               	movlw	176
+   548  00026A  6FAB               	movwf	171,b	;volatile
+   549                           
+   550                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           102:     U1CON1 = 0x80;
+   551  00026C  0E80               	movlw	128
+   552  00026E  6FAC               	movwf	172,b	;volatile
+   553                           
+   554                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           103:     U1CON2 = 0x00;
+   555  000270  0E00               	movlw	0
+   556  000272  6FAD               	movwf	173,b	;volatile
+   557                           
+   558                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           105:     U1ERRIR = 0x00;
+   559  000274  0E00               	movlw	0
+   560  000276  6FB2               	movwf	178,b	;volatile
+   561                           
+   562                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           106:     U1ERRIE = 0x00;
+   563  000278  0E00               	movlw	0
+   564  00027A  6FB3               	movwf	179,b	;volatile
+   565                           
+   566                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           108:     U1UIR = 0x00;
+   567  00027C  0E00               	movlw	0
+   568  00027E  6FB1               	movwf	177,b	;volatile
+   569                           
+   570                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           110:     U1FIFO = 0x00;
+   571  000280  0E00               	movlw	0
+   572  000282  6FB0               	movwf	176,b	;volatile
+   573                           
+   574                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           112:     U1BRGL = 0xA0;
+   575  000284  0EA0               	movlw	160
+   576  000286  6FAE               	movwf	174,b	;volatile
+   577                           
+   578                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           113:     U1BRGH = 0x01;
+   579  000288  0E01               	movlw	1
+   580  00028A  6FAF               	movwf	175,b	;volatile
+   581  00028C                     
+   582                           ; BSR set to: 2
+   583  00028C  0012               	return		;funcret
+   584  00028E                     __end_of_uartInit:
+   585                           	callstack 0
+   586                           
+   587 ;; *************** function _timerInit *****************
+   588 ;; Defined at:
+   589 ;;		line 171 in file "C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c"
+   590 ;; Parameters:    Size  Location     Type
+   591 ;;		None
+   592 ;; Auto vars:     Size  Location     Type
+   593 ;;		None
+   594 ;; Return value:  Size  Location     Type
+   595 ;;                  1    wreg      void 
+   596 ;; Registers used:
+   597 ;;		wreg, status,2
+   598 ;; Tracked objects:
+   599 ;;		On entry : 0/0
+   600 ;;		On exit  : 0/0
+   601 ;;		Unchanged: 0/0
+   602 ;; Data sizes:     COMRAM   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK11  BANK12  BANK13  BANK14  BANK15  BANK1
+      +6  BANK17  BANK18  BANK19  BANK20  BANK21  BANK22  BANK23  BANK24  BANK25  BANK26  BANK27  BANK28  BANK29  BANK30  BANK3
+      +1  BANK32  BANK33  BANK34  BANK35  BANK36  BANK37
+   603 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0
+   604 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0
+   605 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0
+   606 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0
+   607 ;;Total ram usage:        0 bytes
+   608 ;; Hardware stack levels used: 1
+   609 ;; Hardware stack levels required when called: 2
+   610 ;; This function calls:
+   611 ;;		Nothing
+   612 ;; This function is called by:
+   613 ;;		_boardInit
+   614 ;; This function uses a non-reentrant model
+   615 ;;
+   616                           
+   617                           	psect	text4
+   618  00030C                     __ptext4:
+   619                           	callstack 0
+   620  00030C                     _timerInit:
+   621                           	callstack 123
+   622  00030C                     
+   623                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           175:     T0CON1 = 0X66;
+   624  00030C  0E66               	movlw	102
+   625  00030E  0103               	movlb	3	; () banked
+   626  000310  6F1B               	movwf	27,b	;volatile
+   627  000312                     
+   628                           ; BSR set to: 3
+   629                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           178:     TMR0H = 0XFF;
+   630  000312  6919               	setf	25,b	;volatile
+   631                           
+   632                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           179:     TMR0L = 0X00;
+   633  000314  0E00               	movlw	0
+   634  000316  6F18               	movwf	24,b	;volatile
+   635                           
+   636                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           182:     T0CON0 = 0X9f;
+   637  000318  0E9F               	movlw	159
+   638  00031A  6F1A               	movwf	26,b	;volatile
+   639  00031C                     
+   640                           ; BSR set to: 3
+   641  00031C  0012               	return		;funcret
+   642  00031E                     __end_of_timerInit:
+   643                           	callstack 0
+   644                           
+   645 ;; *************** function _portInit *****************
+   646 ;; Defined at:
+   647 ;;		line 43 in file "C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c"
+   648 ;; Parameters:    Size  Location     Type
+   649 ;;		None
+   650 ;; Auto vars:     Size  Location     Type
+   651 ;;		None
+   652 ;; Return value:  Size  Location     Type
+   653 ;;                  1    wreg      void 
+   654 ;; Registers used:
+   655 ;;		wreg, status,2
+   656 ;; Tracked objects:
+   657 ;;		On entry : 0/0
+   658 ;;		On exit  : 0/0
+   659 ;;		Unchanged: 0/0
+   660 ;; Data sizes:     COMRAM   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK11  BANK12  BANK13  BANK14  BANK15  BANK1
+      +6  BANK17  BANK18  BANK19  BANK20  BANK21  BANK22  BANK23  BANK24  BANK25  BANK26  BANK27  BANK28  BANK29  BANK30  BANK3
+      +1  BANK32  BANK33  BANK34  BANK35  BANK36  BANK37
+   661 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0
+   662 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0
+   663 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0
+   664 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0
+   665 ;;Total ram usage:        0 bytes
+   666 ;; Hardware stack levels used: 1
+   667 ;; Hardware stack levels required when called: 2
+   668 ;; This function calls:
+   669 ;;		Nothing
+   670 ;; This function is called by:
+   671 ;;		_boardInit
+   672 ;; This function uses a non-reentrant model
+   673 ;;
+   674                           
+   675                           	psect	text5
+   676  000154                     __ptext5:
+   677                           	callstack 0
+   678  000154                     _portInit:
+   679                           	callstack 123
+   680  000154                     
+   681                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           45:     LATA = 0x00;
+   682  000154  0E00               	movlw	0
+   683  000156  6EBE               	movwf	190,c	;volatile
+   684                           
+   685                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           46:     LATB = 0x00;
+   686  000158  0E00               	movlw	0
+   687  00015A  6EBF               	movwf	191,c	;volatile
+   688                           
+   689                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           47:     LATC = 0x00;
+   690  00015C  0E00               	movlw	0
+   691  00015E  6EC0               	movwf	192,c	;volatile
+   692                           
+   693                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           50:     TRISE = 0x08;
+   694  000160  0E08               	movlw	8
+   695  000162  6ECA               	movwf	202,c	;volatile
+   696  000164                     
+   697                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           51:     TRISA = 0xFF;
+   698  000164  68C6               	setf	198,c	;volatile
+   699                           
+   700                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           52:     TRISB = 0xEF;
+   701  000166  0EEF               	movlw	239
+   702  000168  6EC7               	movwf	199,c	;volatile
+   703                           
+   704                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           53:     TRISC = 0x7F;
+   705  00016A  0E7F               	movlw	127
+   706  00016C  6EC8               	movwf	200,c	;volatile
+   707                           
+   708                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           56:     ANSELC = 0xBF;
+   709  00016E  0EBF               	movlw	191
+   710  000170  0104               	movlb	4	; () banked
+   711  000172  6F10               	movwf	16,b	;volatile
+   712                           
+   713                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           57:     ANSELB = 0xF7;
+   714  000174  0EF7               	movlw	247
+   715  000176  6F08               	movwf	8,b	;volatile
+   716  000178                     
+   717                           ; BSR set to: 4
+   718                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           58:     ANSELA = 0xFF;
+   719  000178  6900               	setf	0,b	;volatile
+   720                           
+   721                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           61:     WPUE = 0x00;
+   722  00017A  0E00               	movlw	0
+   723  00017C  6F21               	movwf	33,b	;volatile
+   724                           
+   725                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           62:     WPUB = 0x00;
+   726  00017E  0E00               	movlw	0
+   727  000180  6F09               	movwf	9,b	;volatile
+   728                           
+   729                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           63:     WPUA = 0x00;
+   730  000182  0E00               	movlw	0
+   731  000184  6F01               	movwf	1,b	;volatile
+   732                           
+   733                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           64:     WPUC = 0x00;
+   734  000186  0E00               	movlw	0
+   735  000188  6F11               	movwf	17,b	;volatile
+   736  00018A                     
+   737                           ; BSR set to: 4
+   738                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           67:     INLVLA = 0xFF;
+   739  00018A  6904               	setf	4,b	;volatile
+   740  00018C                     
+   741                           ; BSR set to: 4
+   742                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           68:     INLVLB = 0xFF;
+   743  00018C  690C               	setf	12,b	;volatile
+   744  00018E                     
+   745                           ; BSR set to: 4
+   746                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           69:     INLVLC = 0xFF;
+   747  00018E  6914               	setf	20,b	;volatile
+   748                           
+   749                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           70:     INLVLE = 0x08;
+   750  000190  0E08               	movlw	8
+   751  000192  6F24               	movwf	36,b	;volatile
+   752  000194                     
+   753                           ; BSR set to: 4
+   754                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           73:     SLRCONA = 0xFF;
+   755  000194  6903               	setf	3,b	;volatile
+   756  000196                     
+   757                           ; BSR set to: 4
+   758                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           74:     SLRCONB = 0xFF;
+   759  000196  690B               	setf	11,b	;volatile
+   760  000198                     
+   761                           ; BSR set to: 4
+   762                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           75:     SLRCONC = 0xFF;
+   763  000198  6913               	setf	19,b	;volatile
+   764                           
+   765                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           78:     ODCONA = 0x00;
+   766  00019A  0E00               	movlw	0
+   767  00019C  6F02               	movwf	2,b	;volatile
+   768                           
+   769                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           79:     ODCONB = 0x00;
+   770  00019E  0E00               	movlw	0
+   771  0001A0  6F0A               	movwf	10,b	;volatile
+   772                           
+   773                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           80:     ODCONC = 0x00;
+   774  0001A2  0E00               	movlw	0
+   775  0001A4  6F12               	movwf	18,b	;volatile
+   776                           
+   777                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           83:     CANRXPPS = 0x0B;
+   778  0001A6  0E0B               	movlw	11
+   779  0001A8  0102               	movlb	2	; () banked
+   780  0001AA  6F3D               	movwf	61,b	;volatile
+   781                           
+   782                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           85:     RB4PPS = 0x46;
+   783  0001AC  0E46               	movlw	70
+   784  0001AE  6F0D               	movwf	13,b	;volatile
+   785                           
+   786                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           87:     U1RXPPS = 0x16;
+   787  0001B0  0E16               	movlw	22
+   788  0001B2  6F72               	movwf	114,b	;volatile
+   789                           
+   790                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           89:     RC7PPS = 0x20;
+   791  0001B4  0E20               	movlw	32
+   792  0001B6  6F18               	movwf	24,b	;volatile
+   793  0001B8                     
+   794                           ; BSR set to: 2
+   795  0001B8  0012               	return		;funcret
+   796  0001BA                     __end_of_portInit:
+   797                           	callstack 0
+   798                           
+   799 ;; *************** function _pmdInit *****************
+   800 ;; Defined at:
+   801 ;;		line 28 in file "C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c"
+   802 ;; Parameters:    Size  Location     Type
+   803 ;;		None
+   804 ;; Auto vars:     Size  Location     Type
+   805 ;;		None
+   806 ;; Return value:  Size  Location     Type
+   807 ;;                  1    wreg      void 
+   808 ;; Registers used:
+   809 ;;		wreg, status,2
+   810 ;; Tracked objects:
+   811 ;;		On entry : 0/0
+   812 ;;		On exit  : 0/0
+   813 ;;		Unchanged: 0/0
+   814 ;; Data sizes:     COMRAM   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK11  BANK12  BANK13  BANK14  BANK15  BANK1
+      +6  BANK17  BANK18  BANK19  BANK20  BANK21  BANK22  BANK23  BANK24  BANK25  BANK26  BANK27  BANK28  BANK29  BANK30  BANK3
+      +1  BANK32  BANK33  BANK34  BANK35  BANK36  BANK37
+   815 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0
+   816 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0
+   817 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0
+   818 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0
+   819 ;;Total ram usage:        0 bytes
+   820 ;; Hardware stack levels used: 1
+   821 ;; Hardware stack levels required when called: 2
+   822 ;; This function calls:
+   823 ;;		Nothing
+   824 ;; This function is called by:
+   825 ;;		_boardInit
+   826 ;; This function uses a non-reentrant model
+   827 ;;
+   828                           
+   829                           	psect	text6
+   830  00028E                     __ptext6:
+   831                           	callstack 0
+   832  00028E                     _pmdInit:
+   833                           	callstack 123
+   834  00028E                     
+   835                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           29:     PMD0 = 0x00;
+   836  00028E  0E00               	movlw	0
+   837  000290  0100               	movlb	0	; () banked
+   838  000292  6F60               	movwf	96,b	;volatile
+   839                           
+   840                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           31:     PMD1 = 0x01;
+   841  000294  0E01               	movlw	1
+   842  000296  6F61               	movwf	97,b	;volatile
+   843                           
+   844                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           33:     PMD2 = 0x03;
+   845  000298  0E03               	movlw	3
+   846  00029A  6F62               	movwf	98,b	;volatile
+   847                           
+   848                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           34:     PMD3 = 0xE7;
+   849  00029C  0EE7               	movlw	231
+   850  00029E  6F63               	movwf	99,b	;volatile
+   851                           
+   852                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           35:     PMD4 = 0x7F;
+   853  0002A0  0E7F               	movlw	127
+   854  0002A2  6F64               	movwf	100,b	;volatile
+   855                           
+   856                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           36:     PMD5 = 0xF7;
+   857  0002A4  0EF7               	movlw	247
+   858  0002A6  6F65               	movwf	101,b	;volatile
+   859                           
+   860                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           38:     PMD6 = 0xF7;
+   861  0002A8  0EF7               	movlw	247
+   862  0002AA  6F66               	movwf	102,b	;volatile
+   863  0002AC                     
+   864                           ; BSR set to: 0
+   865                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           39:     PMD7 = 0xFF;
+   866  0002AC  6967               	setf	103,b	;volatile
+   867  0002AE                     
+   868                           ; BSR set to: 0
+   869                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           40:     PMD8 = 0xFF;
+   870  0002AE  6968               	setf	104,b	;volatile
+   871  0002B0                     
+   872                           ; BSR set to: 0
+   873  0002B0  0012               	return		;funcret
+   874  0002B2                     __end_of_pmdInit:
+   875                           	callstack 0
+   876                           
+   877 ;; *************** function _oscInit *****************
+   878 ;; Defined at:
+   879 ;;		line 16 in file "C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c"
+   880 ;; Parameters:    Size  Location     Type
+   881 ;;		None
+   882 ;; Auto vars:     Size  Location     Type
+   883 ;;		None
+   884 ;; Return value:  Size  Location     Type
+   885 ;;                  1    wreg      void 
+   886 ;; Registers used:
+   887 ;;		wreg, status,2
+   888 ;; Tracked objects:
+   889 ;;		On entry : 0/0
+   890 ;;		On exit  : 0/0
+   891 ;;		Unchanged: 0/0
+   892 ;; Data sizes:     COMRAM   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK11  BANK12  BANK13  BANK14  BANK15  BANK1
+      +6  BANK17  BANK18  BANK19  BANK20  BANK21  BANK22  BANK23  BANK24  BANK25  BANK26  BANK27  BANK28  BANK29  BANK30  BANK3
+      +1  BANK32  BANK33  BANK34  BANK35  BANK36  BANK37
+   893 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0
+   894 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0
+   895 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0
+   896 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0
+   897 ;;Total ram usage:        0 bytes
+   898 ;; Hardware stack levels used: 1
+   899 ;; Hardware stack levels required when called: 2
+   900 ;; This function calls:
+   901 ;;		Nothing
+   902 ;; This function is called by:
+   903 ;;		_boardInit
+   904 ;; This function uses a non-reentrant model
+   905 ;;
+   906                           
+   907                           	psect	text7
+   908  0002F4                     __ptext7:
+   909                           	callstack 0
+   910  0002F4                     _oscInit:
+   911                           	callstack 123
+   912  0002F4                     
+   913                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           21:     OSCCON1 = 0x60;
+   914  0002F4  0E60               	movlw	96
+   915  0002F6  0100               	movlb	0	; () banked
+   916  0002F8  6FAD               	movwf	173,b	;volatile
+   917                           
+   918                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           22:     OSCCON3 = 0x00;
+   919  0002FA  0E00               	movlw	0
+   920  0002FC  6FAF               	movwf	175,b	;volatile
+   921                           
+   922                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           23:     OSCTUNE = 0x00;
+   923  0002FE  0E00               	movlw	0
+   924  000300  6FB0               	movwf	176,b	;volatile
+   925                           
+   926                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           24:     OSCFRQ = 0x05;
+   927  000302  0E05               	movlw	5
+   928  000304  6FB1               	movwf	177,b	;volatile
+   929                           
+   930                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           25:     OSCEN = 0x00;
+   931  000306  0E00               	movlw	0
+   932  000308  6FB3               	movwf	179,b	;volatile
+   933  00030A                     
+   934                           ; BSR set to: 0
+   935  00030A  0012               	return		;funcret
+   936  00030C                     __end_of_oscInit:
+   937                           	callstack 0
+   938                           
+   939 ;; *************** function _interruptInit *****************
+   940 ;; Defined at:
+   941 ;;		line 5 in file "C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c"
+   942 ;; Parameters:    Size  Location     Type
+   943 ;;		None
+   944 ;; Auto vars:     Size  Location     Type
+   945 ;;		None
+   946 ;; Return value:  Size  Location     Type
+   947 ;;                  1    wreg      void 
+   948 ;; Registers used:
+   949 ;;		None
+   950 ;; Tracked objects:
+   951 ;;		On entry : 0/0
+   952 ;;		On exit  : 0/0
+   953 ;;		Unchanged: 0/0
+   954 ;; Data sizes:     COMRAM   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK11  BANK12  BANK13  BANK14  BANK15  BANK1
+      +6  BANK17  BANK18  BANK19  BANK20  BANK21  BANK22  BANK23  BANK24  BANK25  BANK26  BANK27  BANK28  BANK29  BANK30  BANK3
+      +1  BANK32  BANK33  BANK34  BANK35  BANK36  BANK37
+   955 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0
+   956 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0
+   957 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0
+   958 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0
+   959 ;;Total ram usage:        0 bytes
+   960 ;; Hardware stack levels used: 1
+   961 ;; Hardware stack levels required when called: 2
+   962 ;; This function calls:
+   963 ;;		Nothing
+   964 ;; This function is called by:
+   965 ;;		_boardInit
+   966 ;; This function uses a non-reentrant model
+   967 ;;
+   968                           
+   969                           	psect	text8
+   970  00031E                     __ptext8:
+   971                           	callstack 0
+   972  00031E                     _interruptInit:
+   973                           	callstack 123
+   974  00031E                     
+   975                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           7:     INTCON0bits.GIE = 1;
+   976  00031E  8ED6               	bsf	214,7,c	;volatile
+   977                           
+   978                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           8:     INTCON0bits.IPEN = 0;
+   979  000320  9AD6               	bcf	214,5,c	;volatile
+   980                           
+   981                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           10:     PIE4bits.CANRXIE = 1;
+   982  000322  88A2               	bsf	162,4,c	;volatile
+   983                           
+   984                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           11:     PIR4bits.CANRXIF = 0;
+   985  000324  98B2               	bcf	178,4,c	;volatile
+   986                           
+   987                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           13:     PIE3bits.TMR0IE = 1;
+   988  000326  8EA1               	bsf	161,7,c	;volatile
+   989  000328  0012               	return		;funcret
+   990  00032A                     __end_of_interruptInit:
+   991                           	callstack 0
+   992                           
+   993 ;; *************** function _canInit *****************
+   994 ;; Defined at:
+   995 ;;		line 131 in file "C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c"
+   996 ;; Parameters:    Size  Location     Type
+   997 ;;		None
+   998 ;; Auto vars:     Size  Location     Type
+   999 ;;  complete        1    4[COMRAM] _Bool 
+  1000 ;; Return value:  Size  Location     Type
+  1001 ;;                  1    wreg      _Bool 
+  1002 ;; Registers used:
+  1003 ;;		wreg, status,2, status,0, cstack
+  1004 ;; Tracked objects:
+  1005 ;;		On entry : 0/0
+  1006 ;;		On exit  : 0/0
+  1007 ;;		Unchanged: 0/0
+  1008 ;; Data sizes:     COMRAM   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK11  BANK12  BANK13  BANK14  BANK15  BANK1
+      +6  BANK17  BANK18  BANK19  BANK20  BANK21  BANK22  BANK23  BANK24  BANK25  BANK26  BANK27  BANK28  BANK29  BANK30  BANK3
+      +1  BANK32  BANK33  BANK34  BANK35  BANK36  BANK37
+  1009 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0
+  1010 ;;      Locals:         1       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0
+  1011 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0
+  1012 ;;      Totals:         1       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0
+  1013 ;;Total ram usage:        1 bytes
+  1014 ;; Hardware stack levels used: 1
+  1015 ;; Hardware stack levels required when called: 3
+  1016 ;; This function calls:
+  1017 ;;		_canSetOP
+  1018 ;; This function is called by:
+  1019 ;;		_boardInit
+  1020 ;; This function uses a non-reentrant model
+  1021 ;;
+  1022                           
+  1023                           	psect	text9
+  1024  00001E                     __ptext9:
+  1025                           	callstack 0
+  1026  00001E                     _canInit:
+  1027                           	callstack 122
+  1028  00001E                     
+  1029                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           135:     C1CONHbits.ON = 1;
+  1030  00001E  0101               	movlb	1	; () banked
+  1031  000020  8F01               	bsf	1,7,b	;volatile
+  1032  000022                     
+  1033                           ; BSR set to: 1
+  1034                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           137:     complete = canSetOP(4);
+  1035  000022  0E04               	movlw	4
+  1036  000024  EC43  F000         	call	_canSetOP
+  1037  000028  6E1B               	movwf	canInit@complete^(0+1280),c
+  1038  00002A                     
+  1039                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           138:     if (complete){
+  1040  00002A  501B               	movf	canInit@complete^(0+1280),w,c
+  1041  00002C  B4D8               	btfsc	status,2,c
+  1042  00002E  EF1B  F000         	goto	u41
+  1043  000032  EF1D  F000         	goto	u40
+  1044  000036                     u41:
+  1045  000036  EF38  F000         	goto	l984
+  1046  00003A                     u40:
+  1047  00003A                     
+  1048                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           140:         C1FIFOBA = 0x3800;
+  1049  00003A  0E00               	movlw	0
+  1050  00003C  0101               	movlb	1	; () banked
+  1051  00003E  6F4C               	movwf	76,b	;volatile
+  1052  000040  0E38               	movlw	56
+  1053  000042  6F4D               	movwf	77,b	;volatile
+  1054  000044  0E00               	movlw	0
+  1055  000046  6F4E               	movwf	78,b	;volatile
+  1056  000048  0E00               	movlw	0
+  1057  00004A  6F4F               	movwf	79,b	;volatile
+  1058                           
+  1059                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           142:         C1CONL = 0x60;
+  1060  00004C  0E60               	movlw	96
+  1061  00004E  6F00               	movwf	0,b	;volatile
+  1062                           
+  1063                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           144:         C1CONH = 0x97;
+  1064  000050  0E97               	movlw	151
+  1065  000052  6F01               	movwf	1,b	;volatile
+  1066                           
+  1067                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           146:         C1CONU = 0x00;
+  1068  000054  0E00               	movlw	0
+  1069  000056  6F02               	movwf	2,b	;volatile
+  1070                           
+  1071                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           149:         C1NBTCFGL = 0x05;
+  1072  000058  0E05               	movlw	5
+  1073  00005A  6F04               	movwf	4,b	;volatile
+  1074                           
+  1075                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           151:         C1NBTCFGH = 0x05;
+  1076  00005C  0E05               	movlw	5
+  1077  00005E  6F05               	movwf	5,b	;volatile
+  1078                           
+  1079                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           153:         C1NBTCFGU = 0x18;
+  1080  000060  0E18               	movlw	24
+  1081  000062  6F06               	movwf	6,b	;volatile
+  1082                           
+  1083                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           155:         C1NBTCFGT = 0x00;
+  1084  000064  0E00               	movlw	0
+  1085  000066  6F07               	movwf	7,b	;volatile
+  1086  000068                     
+  1087                           ; BSR set to: 1
+  1088                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           157:         complete = canSetOP(6);
+  1089  000068  0E06               	movlw	6
+  1090  00006A  EC43  F000         	call	_canSetOP
+  1091  00006E  6E1B               	movwf	canInit@complete^(0+1280),c
+  1092  000070                     l984:
+  1093                           
+  1094                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           161:     C1FIFOCON1L = 0x01;
+  1095  000070  0E01               	movlw	1
+  1096  000072  0101               	movlb	1	; () banked
+  1097  000074  6F5C               	movwf	92,b	;volatile
+  1098  000076                     
+  1099                           ; BSR set to: 1
+  1100                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           163:     C1FIFOCON1H = 0X04;
+  1101  000076  0E04               	movlw	4
+  1102  000078  6F5D               	movwf	93,b	;volatile
+  1103  00007A                     
+  1104                           ; BSR set to: 1
+  1105                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           165:     C1FIFOCON1U = 0X60;
+  1106  00007A  0E60               	movlw	96
+  1107  00007C  6F5E               	movwf	94,b	;volatile
+  1108  00007E                     
+  1109                           ; BSR set to: 1
+  1110                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           167:     C1FIFOCON1T = 0x01;
+  1111  00007E  0E01               	movlw	1
+  1112  000080  6F5F               	movwf	95,b	;volatile
+  1113  000082                     
+  1114                           ; BSR set to: 1
+  1115                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           169:     return complete;
+  1116  000082  501B               	movf	canInit@complete^(0+1280),w,c
+  1117  000084                     
+  1118                           ; BSR set to: 1
+  1119  000084  0012               	return		;funcret
+  1120  000086                     __end_of_canInit:
+  1121                           	callstack 0
+  1122                           
+  1123 ;; *************** function _canSetOP *****************
+  1124 ;; Defined at:
+  1125 ;;		line 116 in file "C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c"
+  1126 ;; Parameters:    Size  Location     Type
+  1127 ;;  code            1    wreg     unsigned char 
+  1128 ;; Auto vars:     Size  Location     Type
+  1129 ;;  code            1    3[COMRAM] unsigned char 
+  1130 ;;  i               2    0[COMRAM] unsigned short 
+  1131 ;;  success         1    2[COMRAM] _Bool 
+  1132 ;; Return value:  Size  Location     Type
+  1133 ;;                  1    wreg      _Bool 
+  1134 ;; Registers used:
+  1135 ;;		wreg, status,2, status,0
+  1136 ;; Tracked objects:
+  1137 ;;		On entry : 0/0
+  1138 ;;		On exit  : 0/0
+  1139 ;;		Unchanged: 0/0
+  1140 ;; Data sizes:     COMRAM   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK11  BANK12  BANK13  BANK14  BANK15  BANK1
+      +6  BANK17  BANK18  BANK19  BANK20  BANK21  BANK22  BANK23  BANK24  BANK25  BANK26  BANK27  BANK28  BANK29  BANK30  BANK3
+      +1  BANK32  BANK33  BANK34  BANK35  BANK36  BANK37
+  1141 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0
+  1142 ;;      Locals:         4       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0
+  1143 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0
+  1144 ;;      Totals:         4       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0
+  1145 ;;Total ram usage:        4 bytes
+  1146 ;; Hardware stack levels used: 1
+  1147 ;; Hardware stack levels required when called: 2
+  1148 ;; This function calls:
+  1149 ;;		Nothing
+  1150 ;; This function is called by:
+  1151 ;;		_canInit
+  1152 ;; This function uses a non-reentrant model
+  1153 ;;
+  1154                           
+  1155                           	psect	text10
+  1156  000086                     __ptext10:
+  1157                           	callstack 0
+  1158  000086                     _canSetOP:
+  1159                           	callstack 122
+  1160                           
+  1161                           ; BSR set to: 1
+  1162                           ;incstack = 0
+  1163                           ;canSetOP@code stored from wreg
+  1164  000086  6E1A               	movwf	canSetOP@code^(0+1280),c
+  1165  000088                     
+  1166                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           117:     _Bool success = 1;
+  1167  000088  0E01               	movlw	1
+  1168  00008A  6E19               	movwf	canSetOP@success^(0+1280),c
+  1169                           
+  1170                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           118:     uint16_t i = 0;
+  1171  00008C  0E00               	movlw	0
+  1172  00008E  6E18               	movwf	(canSetOP@i+1)^(0+1280),c
+  1173  000090  0E00               	movlw	0
+  1174  000092  6E17               	movwf	canSetOP@i^(0+1280),c
+  1175  000094                     
+  1176                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           119:     C1CONTbits.REQOP = code;
+  1177  000094  0101               	movlb	1	; () banked
+  1178  000096  5103               	movf	3,w,b	;volatile
+  1179  000098  181A               	xorwf	canSetOP@code^(0+1280),w,c
+  1180  00009A  0BF8               	andlw	-8
+  1181  00009C  181A               	xorwf	canSetOP@code^(0+1280),w,c
+  1182  00009E  6F03               	movwf	3,b	;volatile
+  1183                           
+  1184                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           120:     while (C1CONUbits.OPMOD != code){
+  1185  0000A0  EF6A  F000         	goto	l936
+  1186  0000A4                     l224:
+  1187                           
+  1188                           ; BSR set to: 1
+  1189                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           121:         if (1 == C1INTHbits.SERRIF || i > 40000)
+  1190  0000A4  B91D               	btfsc	29,4,b	;volatile
+  1191  0000A6  EF57  F000         	goto	u11
+  1192  0000AA  EF59  F000         	goto	u10
+  1193  0000AE                     u11:
+  1194  0000AE  EF64  F000         	goto	l932
+  1195  0000B2                     u10:
+  1196  0000B2                     
+  1197                           ; BSR set to: 1
+  1198  0000B2  0E41               	movlw	65
+  1199  0000B4  5C17               	subwf	canSetOP@i^(0+1280),w,c
+  1200  0000B6  0E9C               	movlw	156
+  1201  0000B8  5818               	subwfb	(canSetOP@i+1)^(0+1280),w,c
+  1202  0000BA  A0D8               	btfss	status,0,c
+  1203  0000BC  EF62  F000         	goto	u21
+  1204  0000C0  EF64  F000         	goto	u20
+  1205  0000C4                     u21:
+  1206  0000C4  EF68  F000         	goto	l934
+  1207  0000C8                     u20:
+  1208  0000C8                     l932:
+  1209                           
+  1210                           ; BSR set to: 1
+  1211                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           122:             {;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.
+      +                          X/libs/boardInit.c: 123:                 success = 0;
+  1212  0000C8  0E00               	movlw	0
+  1213  0000CA  6E19               	movwf	canSetOP@success^(0+1280),c
+  1214                           
+  1215                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           124:                 break;
+  1216  0000CC  EF75  F000         	goto	l938
+  1217  0000D0                     l934:
+  1218                           
+  1219                           ; BSR set to: 1
+  1220                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           126:         i++;
+  1221  0000D0  4A17               	infsnz	canSetOP@i^(0+1280),f,c
+  1222  0000D2  2A18               	incf	(canSetOP@i+1)^(0+1280),f,c
+  1223  0000D4                     l936:
+  1224                           
+  1225                           ; BSR set to: 1
+  1226                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           120:     while (C1CONUbits.OPMOD != code){
+  1227  0000D4  3902               	swapf	2,w,b	;volatile
+  1228  0000D6  32E8               	rrcf	wreg,f,c
+  1229  0000D8  0B07               	andlw	7
+  1230  0000DA  181A               	xorwf	canSetOP@code^(0+1280),w,c
+  1231  0000DC  A4D8               	btfss	status,2,c
+  1232  0000DE  EF73  F000         	goto	u31
+  1233  0000E2  EF75  F000         	goto	u30
+  1234  0000E6                     u31:
+  1235  0000E6  EF52  F000         	goto	l224
+  1236  0000EA                     u30:
+  1237  0000EA                     l938:
+  1238                           
+  1239                           ; BSR set to: 1
+  1240                           ;C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c:
+      +                           128:     return success;
+  1241  0000EA  5019               	movf	canSetOP@success^(0+1280),w,c
+  1242  0000EC                     
+  1243                           ; BSR set to: 1
+  1244  0000EC  0012               	return		;funcret
+  1245  0000EE                     __end_of_canSetOP:
+  1246                           	callstack 0
+  1247                           
+  1248 ;; *************** function _INTERRUPT_InterruptManager *****************
+  1249 ;; Defined at:
+  1250 ;;		line 174 in file "main.c"
+  1251 ;; Parameters:    Size  Location     Type
+  1252 ;;		None
+  1253 ;; Auto vars:     Size  Location     Type
+  1254 ;;		None
+  1255 ;; Return value:  Size  Location     Type
+  1256 ;;                  1    wreg      void 
+  1257 ;; Registers used:
+  1258 ;;		wreg, status,2, cstack
+  1259 ;; Tracked objects:
+  1260 ;;		On entry : 0/0
+  1261 ;;		On exit  : 0/0
+  1262 ;;		Unchanged: 0/0
+  1263 ;; Data sizes:     COMRAM   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK11  BANK12  BANK13  BANK14  BANK15  BANK1
+      +6  BANK17  BANK18  BANK19  BANK20  BANK21  BANK22  BANK23  BANK24  BANK25  BANK26  BANK27  BANK28  BANK29  BANK30  BANK3
+      +1  BANK32  BANK33  BANK34  BANK35  BANK36  BANK37
+  1264 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0
+  1265 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0
+  1266 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0
+  1267 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0
+  1268 ;;Total ram usage:        0 bytes
+  1269 ;; Hardware stack levels used: 1
+  1270 ;; Hardware stack levels required when called: 1
+  1271 ;; This function calls:
+  1272 ;;		_CAN1_RXI_ISR
+  1273 ;;		_TMR0_ISR
+  1274 ;; This function is called by:
+  1275 ;;		Interrupt level 2
+  1276 ;; This function uses a non-reentrant model
+  1277 ;;
+  1278                           
+  1279                           	psect	text11
+  1280  000204                     __ptext11:
+  1281                           	callstack 0
+  1282  000204                     _INTERRUPT_InterruptManager:
+  1283                           	callstack 122
+  1284  000204                     
+  1285                           ;main.c: 176:     if(PIE3bits.TMR0IE == 1 && PIR3bits.TMR0IF == 1)
+  1286  000204  AEA1               	btfss	161,7,c	;volatile
+  1287  000206  EF07  F001         	goto	i2u6_41
+  1288  00020A  EF09  F001         	goto	i2u6_40
+  1289  00020E                     i2u6_41:
+  1290  00020E  EF15  F001         	goto	i2l29
+  1291  000212                     i2u6_40:
+  1292  000212  AEB1               	btfss	177,7,c	;volatile
+  1293  000214  EF0E  F001         	goto	i2u7_41
+  1294  000218  EF10  F001         	goto	i2u7_40
+  1295  00021C                     i2u7_41:
+  1296  00021C  EF15  F001         	goto	i2l29
+  1297  000220                     i2u7_40:
+  1298  000220                     
+  1299                           ;main.c: 177:     {;main.c: 178:         TMR0_ISR();
+  1300  000220  EC95  F001         	call	_TMR0_ISR	;wreg free
+  1301  000224                     
+  1302                           ;main.c: 179:         PIR3bits.TMR0IF = 0;
+  1303  000224  9EB1               	bcf	177,7,c	;volatile
+  1304                           
+  1305                           ;main.c: 180:     }
+  1306  000226  EF26  F001         	goto	i2l33
+  1307  00022A                     i2l29:
+  1308  00022A  A8A2               	btfss	162,4,c	;volatile
+  1309  00022C  EF1A  F001         	goto	i2u8_41
+  1310  000230  EF1C  F001         	goto	i2u8_40
+  1311  000234                     i2u8_41:
+  1312  000234  EF26  F001         	goto	i2l33
+  1313  000238                     i2u8_40:
+  1314  000238  A8B2               	btfss	178,4,c	;volatile
+  1315  00023A  EF21  F001         	goto	i2u9_41
+  1316  00023E  EF23  F001         	goto	i2u9_40
+  1317  000242                     i2u9_41:
+  1318  000242  EF26  F001         	goto	i2l33
+  1319  000246                     i2u9_40:
+  1320  000246                     
+  1321                           ;main.c: 182:     {;main.c: 183:         CAN1_RXI_ISR();
+  1322  000246  EC99  F001         	call	_CAN1_RXI_ISR	;wreg free
+  1323  00024A                     
+  1324                           ;main.c: 184:         PIR4bits.CANRXIF = 0;
+  1325  00024A  98B2               	bcf	178,4,c	;volatile
+  1326  00024C                     i2l33:
+  1327  00024C  0011               	retfie		f
+  1328  00024E                     __end_of_INTERRUPT_InterruptManager:
+  1329                           	callstack 0
+  1330                           
+  1331 ;; *************** function _TMR0_ISR *****************
+  1332 ;; Defined at:
+  1333 ;;		line 164 in file "main.c"
+  1334 ;; Parameters:    Size  Location     Type
+  1335 ;;		None
+  1336 ;; Auto vars:     Size  Location     Type
+  1337 ;;		None
+  1338 ;; Return value:  Size  Location     Type
+  1339 ;;                  1    wreg      void 
+  1340 ;; Registers used:
+  1341 ;;		wreg, status,2
+  1342 ;; Tracked objects:
+  1343 ;;		On entry : 0/0
+  1344 ;;		On exit  : 0/0
+  1345 ;;		Unchanged: 0/0
+  1346 ;; Data sizes:     COMRAM   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK11  BANK12  BANK13  BANK14  BANK15  BANK1
+      +6  BANK17  BANK18  BANK19  BANK20  BANK21  BANK22  BANK23  BANK24  BANK25  BANK26  BANK27  BANK28  BANK29  BANK30  BANK3
+      +1  BANK32  BANK33  BANK34  BANK35  BANK36  BANK37
+  1347 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0
+  1348 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0
+  1349 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0
+  1350 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0
+  1351 ;;Total ram usage:        0 bytes
+  1352 ;; Hardware stack levels used: 1
+  1353 ;; This function calls:
+  1354 ;;		Nothing
+  1355 ;; This function is called by:
+  1356 ;;		_INTERRUPT_InterruptManager
+  1357 ;; This function uses a non-reentrant model
+  1358 ;;
+  1359                           
+  1360                           	psect	text12
+  1361  00032A                     __ptext12:
+  1362                           	callstack 0
+  1363  00032A                     _TMR0_ISR:
+  1364                           	callstack 122
+  1365  00032A                     
+  1366                           ;main.c: 165:     measure_flag = 1;
+  1367  00032A  0E01               	movlw	1
+  1368  00032C  6E15               	movwf	_measure_flag^(0+1280),c
+  1369  00032E                     
+  1370                           ;main.c: 166:     PIR3bits.TMR0IF = 0;
+  1371  00032E  9EB1               	bcf	177,7,c	;volatile
+  1372  000330  0012               	return		;funcret
+  1373  000332                     __end_of_TMR0_ISR:
+  1374                           	callstack 0
+  1375                           
+  1376 ;; *************** function _CAN1_RXI_ISR *****************
+  1377 ;; Defined at:
+  1378 ;;		line 169 in file "main.c"
+  1379 ;; Parameters:    Size  Location     Type
+  1380 ;;		None
+  1381 ;; Auto vars:     Size  Location     Type
+  1382 ;;		None
+  1383 ;; Return value:  Size  Location     Type
+  1384 ;;                  1    wreg      void 
+  1385 ;; Registers used:
+  1386 ;;		wreg, status,2
+  1387 ;; Tracked objects:
+  1388 ;;		On entry : 0/0
+  1389 ;;		On exit  : 0/0
+  1390 ;;		Unchanged: 0/0
+  1391 ;; Data sizes:     COMRAM   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK11  BANK12  BANK13  BANK14  BANK15  BANK1
+      +6  BANK17  BANK18  BANK19  BANK20  BANK21  BANK22  BANK23  BANK24  BANK25  BANK26  BANK27  BANK28  BANK29  BANK30  BANK3
+      +1  BANK32  BANK33  BANK34  BANK35  BANK36  BANK37
+  1392 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0
+  1393 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0
+  1394 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0
+  1395 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0       0       0
+  1396 ;;Total ram usage:        0 bytes
+  1397 ;; Hardware stack levels used: 1
+  1398 ;; This function calls:
+  1399 ;;		Nothing
+  1400 ;; This function is called by:
+  1401 ;;		_INTERRUPT_InterruptManager
+  1402 ;; This function uses a non-reentrant model
+  1403 ;;
+  1404                           
+  1405                           	psect	text13
+  1406  000332                     __ptext13:
+  1407                           	callstack 0
+  1408  000332                     _CAN1_RXI_ISR:
+  1409                           	callstack 122
+  1410  000332                     
+  1411                           ;main.c: 170:     received_flag = 1;
+  1412  000332  0E01               	movlw	1
+  1413  000334  6E16               	movwf	_received_flag^(0+1280),c
+  1414  000336                     
+  1415                           ;main.c: 171:     PIR3bits.TMR0IF = 0;
+  1416  000336  9EB1               	bcf	177,7,c	;volatile
+  1417  000338  0012               	return		;funcret
+  1418  00033A                     __end_of_CAN1_RXI_ISR:
+  1419                           	callstack 0
+  1420                           
+  1421                           ;
+  1422                           ; Interrupt Vector Table @ 0x8
+  1423                           ;
+  1424                           
+  1425                           	psect	ivt0x8
+  1426  000008                     __pivt0x8:
+  1427                           	callstack 0
+  1428  000008                     ivt0x8_base:
+  1429                           	callstack 0
+  1430                           
+  1431                           ; high-priority vector
+  1432  000008  EF02  F001         	goto	_INTERRUPT_InterruptManager
+  1433  000018                     	org	16
+  1434                           
+  1435                           ; low-priority vector
+  1436  000018  00FF               	reset	
+  1437  0000                     
+  1438                           	psect	rparam
+  1439  0000                     
+  1440                           	psect	idloc
+  1441                           
+  1442                           ;Config register IDLOC0 @ 0x200000
+  1443                           ;	unspecified, using default values
+  1444  200000                     	org	2097152
+  1445  200000  0FFF               	dw	4095
+  1446                           
+  1447                           ;Config register IDLOC1 @ 0x200002
+  1448                           ;	unspecified, using default values
+  1449  200002                     	org	2097154
+  1450  200002  0FFF               	dw	4095
+  1451                           
+  1452                           ;Config register IDLOC2 @ 0x200004
+  1453                           ;	unspecified, using default values
+  1454  200004                     	org	2097156
+  1455  200004  0FFF               	dw	4095
+  1456                           
+  1457                           ;Config register IDLOC3 @ 0x200006
+  1458                           ;	unspecified, using default values
+  1459  200006                     	org	2097158
+  1460  200006  0FFF               	dw	4095
+  1461                           
+  1462                           ;Config register IDLOC4 @ 0x200008
+  1463                           ;	unspecified, using default values
+  1464  200008                     	org	2097160
+  1465  200008  0FFF               	dw	4095
+  1466                           
+  1467                           ;Config register IDLOC5 @ 0x20000A
+  1468                           ;	unspecified, using default values
+  1469  20000A                     	org	2097162
+  1470  20000A  0FFF               	dw	4095
+  1471                           
+  1472                           ;Config register IDLOC6 @ 0x20000C
+  1473                           ;	unspecified, using default values
+  1474  20000C                     	org	2097164
+  1475  20000C  0FFF               	dw	4095
+  1476                           
+  1477                           ;Config register IDLOC7 @ 0x20000E
+  1478                           ;	unspecified, using default values
+  1479  20000E                     	org	2097166
+  1480  20000E  0FFF               	dw	4095
+  1481                           
+  1482                           ;Config register IDLOC8 @ 0x200010
+  1483                           ;	unspecified, using default values
+  1484  200010                     	org	2097168
+  1485  200010  0FFF               	dw	4095
+  1486                           
+  1487                           ;Config register IDLOC9 @ 0x200012
+  1488                           ;	unspecified, using default values
+  1489  200012                     	org	2097170
+  1490  200012  0FFF               	dw	4095
+  1491                           
+  1492                           ;Config register IDLOC10 @ 0x200014
+  1493                           ;	unspecified, using default values
+  1494  200014                     	org	2097172
+  1495  200014  0FFF               	dw	4095
+  1496                           
+  1497                           ;Config register IDLOC11 @ 0x200016
+  1498                           ;	unspecified, using default values
+  1499  200016                     	org	2097174
+  1500  200016  0FFF               	dw	4095
+  1501                           
+  1502                           ;Config register IDLOC12 @ 0x200018
+  1503                           ;	unspecified, using default values
+  1504  200018                     	org	2097176
+  1505  200018  0FFF               	dw	4095
+  1506                           
+  1507                           ;Config register IDLOC13 @ 0x20001A
+  1508                           ;	unspecified, using default values
+  1509  20001A                     	org	2097178
+  1510  20001A  0FFF               	dw	4095
+  1511                           
+  1512                           ;Config register IDLOC14 @ 0x20001C
+  1513                           ;	unspecified, using default values
+  1514  20001C                     	org	2097180
+  1515  20001C  0FFF               	dw	4095
+  1516                           
+  1517                           ;Config register IDLOC15 @ 0x20001E
+  1518                           ;	unspecified, using default values
+  1519  20001E                     	org	2097182
+  1520  20001E  0FFF               	dw	4095
+  1521                           
+  1522                           	psect	config
+  1523                           
+  1524                           ;Config register CONFIG1 @ 0x300000
+  1525                           ;	External Oscillator Selection
+  1526                           ;	FEXTOSC = OFF, Oscillator not enabled
+  1527                           ;	Reset Oscillator Selection
+  1528                           ;	RSTOSC = HFINTOSC_64MHZ, HFINTOSC with HFFRQ = 64 MHz and CDIV = 1:1
+  1529  300000                     	org	3145728
+  1530  300000  8C                 	db	140
+  1531                           
+  1532                           ;Config register CONFIG2 @ 0x300001
+  1533                           ;	Clock out Enable bit
+  1534                           ;	CLKOUTEN = OFF, CLKOUT function is disabled
+  1535                           ;	PRLOCKED One-Way Set Enable bit
+  1536                           ;	PR1WAY = ON, PRLOCKED bit can be cleared and set only once
+  1537                           ;	Clock Switch Enable bit
+  1538                           ;	CSWEN = ON, Writing to NOSC and NDIV is allowed
+  1539                           ;	JTAG Enable bit
+  1540                           ;	JTAGEN = ON, Enable JTAG Boundary Scan mode and pins
+  1541                           ;	Fail-Safe Clock Monitor Enable bit
+  1542                           ;	FCMEN = ON, Fail-Safe Clock Monitor enabled
+  1543                           ;	Fail-Safe Clock Monitor -Primary XTAL Enable bit
+  1544                           ;	FCMENP = ON, FSCM timer will set FSCMP bit and OSFIF interrupt on Primary XTAL failure
+  1545                           ;	Fail-Safe Clock Monitor -Secondary XTAL Enable bit
+  1546                           ;	FCMENS = ON, FSCM timer will set FSCMS bit and OSFIF interrupt on Secondary XTAL failu
+      +                          re
+  1547  300001                     	org	3145729
+  1548  300001  FF                 	db	255
+  1549                           
+  1550                           ;Config register CONFIG3 @ 0x300002
+  1551                           ;	MCLR Enable bit
+  1552                           ;	MCLRE = EXTMCLR, If LVP = 0, MCLR pin is MCLR; If LVP = 1, RE3 pin function is MCLR
+  1553                           ;	Power-up timer selection bits
+  1554                           ;	PWRTS = PWRT_OFF, PWRT is disabled
+  1555                           ;	Multi-vector enable bit
+  1556                           ;	MVECEN = OFF, Interrupt contoller does not use vector table to prioritze interrupts
+  1557                           ;	IVTLOCK bit One-way set enable bit
+  1558                           ;	IVT1WAY = ON, IVTLOCKED bit can be cleared and set only once
+  1559                           ;	Low Power BOR Enable bit
+  1560                           ;	LPBOREN = OFF, Low-Power BOR disabled
+  1561                           ;	Brown-out Reset Enable bits
+  1562                           ;	BOREN = OFF, Brown-out Reset disabled
+  1563  300002                     	org	3145730
+  1564  300002  37                 	db	55
+  1565                           
+  1566                           ;Config register CONFIG4 @ 0x300003
+  1567                           ;	Brown-out Reset Voltage Selection bits
+  1568                           ;	BORV = VBOR_1P9, Brown-out Reset Voltage (VBOR) set to 1.9V
+  1569                           ;	ZCD Disable bit
+  1570                           ;	ZCD = OFF, ZCD module is disabled. ZCD can be enabled by setting the ZCDSEN bit of ZCD
+      +                          CON
+  1571                           ;	PPSLOCK bit One-Way Set Enable bit
+  1572                           ;	PPS1WAY = ON, PPSLOCKED bit can be cleared and set only once; PPS registers remain loc
+      +                          ked after one clear/set cycle
+  1573                           ;	Stack Full/Underflow Reset Enable bit
+  1574                           ;	STVREN = ON, Stack full/underflow will cause Reset
+  1575                           ;	Low Voltage Programming Enable bit
+  1576                           ;	LVP = ON, Low voltage programming enabled. MCLR/VPP pin function is MCLR. MCLRE config
+      +                          uration bit is ignored
+  1577                           ;	Extended Instruction Set Enable bit
+  1578                           ;	XINST = OFF, Extended Instruction Set and Indexed Addressing Mode disabled
+  1579  300003                     	org	3145731
+  1580  300003  FF                 	db	255
+  1581                           
+  1582                           ;Config register CONFIG5 @ 0x300004
+  1583                           ;	WDT Period selection bits
+  1584                           ;	WDTCPS = WDTCPS_31, Divider ratio 1:65536; software control of WDTPS
+  1585                           ;	WDT operating mode
+  1586                           ;	WDTE = OFF, WDT Disabled; SWDTEN is ignored
+  1587  300004                     	org	3145732
+  1588  300004  9F                 	db	159
+  1589                           
+  1590                           ;Config register CONFIG6 @ 0x300005
+  1591                           ;	WDT Window Select bits
+  1592                           ;	WDTCWS = WDTCWS_7, window always open (100%); software control; keyed access not requi
+      +                          red
+  1593                           ;	WDT input clock selector
+  1594                           ;	WDTCCS = SC, Software Control
+  1595  300005                     	org	3145733
+  1596  300005  FF                 	db	255
+  1597                           
+  1598                           ;Config register CONFIG7 @ 0x300006
+  1599                           ;	Boot Block Size selection bits
+  1600                           ;	BBSIZE = BBSIZE_512, Boot Block size is 512 words
+  1601                           ;	Boot Block enable bit
+  1602                           ;	BBEN = OFF, Boot block disabled
+  1603                           ;	Storage Area Flash enable bit
+  1604                           ;	SAFEN = OFF, SAF disabled
+  1605  300006                     	org	3145734
+  1606  300006  FF                 	db	255
+  1607                           
+  1608                           ;Config register CONFIG8 @ 0x300007
+  1609                           ;	Boot Block Write Protection bit
+  1610                           ;	WRTB = OFF, Boot Block not Write protected
+  1611                           ;	Configuration Register Write Protection bit
+  1612                           ;	WRTC = OFF, Configuration registers not Write protected
+  1613                           ;	Data EEPROM Write Protection bit
+  1614                           ;	WRTD = OFF, Data EEPROM not Write protected
+  1615                           ;	SAF Write protection bit
+  1616                           ;	WRTSAF = OFF, SAF not Write Protected
+  1617                           ;	Application Block write protection bit
+  1618                           ;	WRTAPP = OFF, Application Block not write protected
+  1619  300007                     	org	3145735
+  1620  300007  FF                 	db	255
+  1621                           
+  1622                           ;Config register CONFIG9 @ 0x300008
+  1623                           ;	CRC on boot output pin selection
+  1624                           ;	BOOTPINSEL = RC5, CRC on boot output pin is RC5
+  1625                           ;	CRC on boot output pin enable bit
+  1626                           ;	BPEN = OFF, CRC on boot output pin disabled
+  1627                           ;	CRC on boot output pin open drain bit
+  1628                           ;	ODCON = OFF, Pin drives both high-going and low-going signals
+  1629  300008                     	org	3145736
+  1630  300008  FF                 	db	255
+  1631                           
+  1632                           ;Config register CONFIG10 @ 0x300009
+  1633                           ;	PFM and Data EEPROM Code Protection bit
+  1634                           ;	CP = OFF, PFM and Data EEPROM code protection disabled
+  1635  300009                     	org	3145737
+  1636  300009  FF                 	db	255
+  1637                           
+  1638                           ;Config register CONFIG11 @ 0x30000A
+  1639                           ;	CRC on boot scan enable for boot area
+  1640                           ;	BOOTSCEN = OFF, CRC on boot will not include the boot area of program memory in its ca
+      +                          lculation
+  1641                           ;	CRC on boot Continue on Error for boot areas bit
+  1642                           ;	BOOTCOE = HALT, CRC on boot will stop device if error is detected in boot areas
+  1643                           ;	CRC on boot application code scan enable
+  1644                           ;	APPSCEN = OFF, CRC on boot will not include the application area of program memory in 
+      +                          its calculation
+  1645                           ;	CRC on boot SAF area scan enable
+  1646                           ;	SAFSCEN = OFF, CRC on boot will not include the SAF area of program memory in its calc
+      +                          ulation
+  1647                           ;	CRC on boot Data EEPROM scan enable
+  1648                           ;	DATASCEN = OFF, CRC on boot will not include data EEPROM in its calculation
+  1649                           ;	CRC on boot Config fuses scan enable
+  1650                           ;	CFGSCEN = OFF, CRC on boot will not include the configuration fuses in its calculation
+  1651                           ;	CRC on boot Continue on Error for non-boot areas bit
+  1652                           ;	COE = HALT, CRC on boot will stop device if error is detected in non-boot areas
+  1653                           ;	Boot on CRC Enable bit
+  1654                           ;	BOOTPOR = OFF, CRC on boot will not run
+  1655  30000A                     	org	3145738
+  1656  30000A  FF                 	db	255
+  1657                           
+  1658                           ;Config register CONFIG12 @ 0x30000B
+  1659                           ;	Boot Sector Polynomial for CRC on boot bits 31-24
+  1660                           ;	BCRCPOLT = hFF, Bits 31:24 of BCRCPOL are 0xFF
+  1661  30000B                     	org	3145739
+  1662  30000B  FF                 	db	255
+  1663                           
+  1664                           ;Config register CONFIG13 @ 0x30000C
+  1665                           ;	Boot Sector Polynomial for CRC on boot bits 23-16
+  1666                           ;	BCRCPOLU = hFF, Bits 23:16 of BCRCPOL are 0xFF
+  1667  30000C                     	org	3145740
+  1668  30000C  FF                 	db	255
+  1669                           
+  1670                           ;Config register CONFIG14 @ 0x30000D
+  1671                           ;	Boot Sector Polynomial for CRC on boot bits 15-8
+  1672                           ;	BCRCPOLH = hFF, Bits 15:8 of BCRCPOL are 0xFF
+  1673  30000D                     	org	3145741
+  1674  30000D  FF                 	db	255
+  1675                           
+  1676                           ;Config register CONFIG15 @ 0x30000E
+  1677                           ;	Boot Sector Polynomial for CRC on boot bits 7-0
+  1678                           ;	BCRCPOLL = hFF, Bits 7:0 of BCRCPOL are 0xFF
+  1679  30000E                     	org	3145742
+  1680  30000E  FF                 	db	255
+  1681                           
+  1682                           ;Config register CONFIG16 @ 0x30000F
+  1683                           ;	Boot Sector Seed for CRC on boot bits 31-24
+  1684                           ;	BCRCSEEDT = hFF, Bits 31:24 of BCRCSEED are 0xFF
+  1685  30000F                     	org	3145743
+  1686  30000F  FF                 	db	255
+  1687                           
+  1688                           ;Config register CONFIG17 @ 0x300010
+  1689                           ;	Boot Sector Seed for CRC on boot bits 23-16
+  1690                           ;	BCRCSEEDU = hFF, Bits 23:16 of BCRCSEED are 0xFF
+  1691  300010                     	org	3145744
+  1692  300010  FF                 	db	255
+  1693                           
+  1694                           ;Config register CONFIG18 @ 0x300011
+  1695                           ;	Boot Sector Seed for CRC on boot bits 15-8
+  1696                           ;	BCRCSEEDH = hFF, Bits 15:8 of BCRCSEED are 0xFF
+  1697  300011                     	org	3145745
+  1698  300011  FF                 	db	255
+  1699                           
+  1700                           ;Config register CONFIG19 @ 0x300012
+  1701                           ;	Boot Sector Seed for CRC on boot bits 7-0
+  1702                           ;	BCRCSEEDL = hFF, Bits 7:0 of BCRCSEED are 0xFF
+  1703  300012                     	org	3145746
+  1704  300012  FF                 	db	255
+  1705                           
+  1706                           ;Config register CONFIG20 @ 0x300013
+  1707                           ;	Boot Sector Expected Result for CRC on boot bits 31-24
+  1708                           ;	BCRCEREST = hFF, Bits 31:24 of BCRCERES are 0xFF
+  1709  300013                     	org	3145747
+  1710  300013  FF                 	db	255
+  1711                           
+  1712                           ;Config register CONFIG21 @ 0x300014
+  1713                           ;	Boot Sector Expected Result for CRC on boot bits 23-16
+  1714                           ;	BCRCERESU = hFF, Bits 23:16 of BCRCERES are 0xFF
+  1715  300014                     	org	3145748
+  1716  300014  FF                 	db	255
+  1717                           
+  1718                           ;Config register CONFIG22 @ 0x300015
+  1719                           ;	Boot Sector Expected Result for CRC on boot bits 15-8
+  1720                           ;	BCRCERESH = hFF, Bits 15:8 of BCRCERES are 0xFF
+  1721  300015                     	org	3145749
+  1722  300015  FF                 	db	255
+  1723                           
+  1724                           ;Config register CONFIG23 @ 0x300016
+  1725                           ;	Boot Sector Expected Result for CRC on boot bits 7-0
+  1726                           ;	BCRCERESL = hFF, Bits 7:0 of BCRCERES are 0xFF
+  1727  300016                     	org	3145750
+  1728  300016  FF                 	db	255
+  1729                           
+  1730                           ;Config register CONFIG24 @ 0x300017
+  1731                           ;	Non-Boot Sector Polynomial for CRC on boot bits 31-24
+  1732                           ;	CRCPOLT = hFF, Bits 31:24 of CRCPOL are 0xFF
+  1733  300017                     	org	3145751
+  1734  300017  FF                 	db	255
+  1735                           
+  1736                           ;Config register CONFIG25 @ 0x300018
+  1737                           ;	Non-Boot Sector Polynomial for CRC on boot bits 23-16
+  1738                           ;	CRCPOLU = hFF, Bits 23:16 of CRCPOL are 0xFF
+  1739  300018                     	org	3145752
+  1740  300018  FF                 	db	255
+  1741                           
+  1742                           ;Config register CONFIG26 @ 0x300019
+  1743                           ;	Non-Boot Sector Polynomial for CRC on boot bits 15-8
+  1744                           ;	CRCPOLH = hFF, Bits 15:8 of CRCPOL are 0xFF
+  1745  300019                     	org	3145753
+  1746  300019  FF                 	db	255
+  1747                           
+  1748                           ;Config register CONFIG27 @ 0x30001A
+  1749                           ;	Non-Boot Sector Polynomial for CRC on boot bits 7-0
+  1750                           ;	CRCPOLL = hFF, Bits 7:0 of CRCPOL are 0xFF
+  1751  30001A                     	org	3145754
+  1752  30001A  FF                 	db	255
+  1753                           
+  1754                           ;Config register CONFIG28 @ 0x30001B
+  1755                           ;	Non-Boot Sector Seed for CRC on boot bits 31-24
+  1756                           ;	CRCSEEDT = hFF, Bits 31:24 of CRCSEED are 0xFF
+  1757  30001B                     	org	3145755
+  1758  30001B  FF                 	db	255
+  1759                           
+  1760                           ;Config register CONFIG29 @ 0x30001C
+  1761                           ;	Non-Boot Sector Seed for CRC on boot bits 23-16
+  1762                           ;	CRCSEEDU = hFF, Bits 23:16 of CRCSEED are 0xFF
+  1763  30001C                     	org	3145756
+  1764  30001C  FF                 	db	255
+  1765                           
+  1766                           ;Config register CONFIG30 @ 0x30001D
+  1767                           ;	Non-Boot Sector Seed for CRC on boot bits 15-8
+  1768                           ;	CRCSEEDH = hFF, Bits 15:8 of CRCSEED are 0xFF
+  1769  30001D                     	org	3145757
+  1770  30001D  FF                 	db	255
+  1771                           
+  1772                           ;Config register CONFIG31 @ 0x30001E
+  1773                           ;	Non-Boot Sector Seed for CRC on boot bits 7-0
+  1774                           ;	CRCSEEDL = hFF, Bits 7:0 of CRCSEED are 0xFF
+  1775  30001E                     	org	3145758
+  1776  30001E  FF                 	db	255
+  1777                           
+  1778                           ;Config register CONFIG32 @ 0x30001F
+  1779                           ;	Non-Boot Sector Expected Result for CRC on boot bits 31-24
+  1780                           ;	CRCEREST = hFF, Bits 31:24 of CRCERES are 0xFF
+  1781  30001F                     	org	3145759
+  1782  30001F  FF                 	db	255
+  1783                           
+  1784                           ;Config register CONFIG33 @ 0x300020
+  1785                           ;	Non-Boot Sector Expected Result for CRC on boot bits 23-16
+  1786                           ;	CRCERESU = hFF, Bits 23:16 of CRCERES are 0xFF
+  1787  300020                     	org	3145760
+  1788  300020  FF                 	db	255
+  1789                           
+  1790                           ;Config register CONFIG34 @ 0x300021
+  1791                           ;	Non-Boot Sector Expected Result for CRC on boot bits 15-8
+  1792                           ;	CRCERESH = hFF, Bits 15:8 of CRCERES are 0xFF
+  1793  300021                     	org	3145761
+  1794  300021  FF                 	db	255
+  1795                           
+  1796                           ;Config register CONFIG35 @ 0x300022
+  1797                           ;	Non-Boot Sector Expected Result for CRC on boot bits 7-0
+  1798                           ;	CRCERESL = hFF, Bits 7:0 of CRCERES are 0xFF
+  1799  300022                     	org	3145762
+  1800  300022  FF                 	db	255
+  1801                           
+  1802                           ; Padding undefined space
+  1803  300023                     	org	3145763
+  1804  300023  FF                 	db	255
+  1805                           tosu	equ	0x4FF
+  1806                           tosh	equ	0x4FE
+  1807                           tosl	equ	0x4FD
+  1808                           stkptr	equ	0x4FC
+  1809                           pclatu	equ	0x4FB
+  1810                           pclath	equ	0x4FA
+  1811                           pcl	equ	0x4F9
+  1812                           tblptru	equ	0x4F8
+  1813                           tblptrh	equ	0x4F7
+  1814                           tblptrl	equ	0x4F6
+  1815                           tablat	equ	0x4F5
+  1816                           prodh	equ	0x4F4
+  1817                           prodl	equ	0x4F3
+  1818                           indf0	equ	0x4EF
+  1819                           postinc0	equ	0x4EE
+  1820                           postdec0	equ	0x4ED
+  1821                           preinc0	equ	0x4EC
+  1822                           plusw0	equ	0x4EB
+  1823                           fsr0h	equ	0x4EA
+  1824                           fsr0l	equ	0x4E9
+  1825                           wreg	equ	0x4E8
+  1826                           indf1	equ	0x4E7
+  1827                           postinc1	equ	0x4E6
+  1828                           postdec1	equ	0x4E5
+  1829                           preinc1	equ	0x4E4
+  1830                           plusw1	equ	0x4E3
+  1831                           fsr1h	equ	0x4E2
+  1832                           fsr1l	equ	0x4E1
+  1833                           bsr	equ	0x4E0
+  1834                           indf2	equ	0x4DF
+  1835                           postinc2	equ	0x4DE
+  1836                           postdec2	equ	0x4DD
+  1837                           preinc2	equ	0x4DC
+  1838                           plusw2	equ	0x4DB
+  1839                           fsr2h	equ	0x4DA
+  1840                           fsr2l	equ	0x4D9
+  1841                           status	equ	0x4D8
+
+Data Sizes:
+    Strings     0
+    Constant    0
+    Data        0
+    BSS         22
+    Persistent  0
+    Stack       0
+
+Auto Spaces:
+    Space          Size  Autos    Used
+    COMRAM           95      9      31
+    BANK5           160      0       0
+    BANK6           256      0       0
+    BANK7           256      0       0
+    BANK8           256      0       0
+    BANK9           256      0       0
+    BANK10          256      0       0
+    BANK11          256      0       0
+    BANK12          256      0       0
+    BANK13          256      0       0
+    BANK14          256      0       0
+    BANK15          256      0       0
+    BANK16          256      0       0
+    BANK17          256      0       0
+    BANK18          256      0       0
+    BANK19          256      0       0
+    BANK20          256      0       0
+    BANK21          256      0       0
+    BANK22          256      0       0
+    BANK23          256      0       0
+    BANK24          256      0       0
+    BANK25          256      0       0
+    BANK26          256      0       0
+    BANK27          256      0       0
+    BANK28          256      0       0
+    BANK29          256      0       0
+    BANK30          256      0       0
+    BANK31          256      0       0
+    BANK32          256      0       0
+    BANK33          256      0       0
+    BANK34          256      0       0
+    BANK35          256      0       0
+    BANK36          256      0       0
+    BANK37          256      0       0
+
+Pointer List with Targets:
+
+    canReceive@FIFO	PTR unsigned char  size(2) Largest target is 9727
+		 -> RAM(DATA[9727]), 
+
+
+Critical Paths under _main in COMRAM
+
+    _main->_canReceive
+    _boardInit->_canInit
+    _canInit->_canSetOP
+
+Critical Paths under _INTERRUPT_InterruptManager in COMRAM
+
+    None.
+
+Critical Paths under _main in BANK5
+
+    None.
+
+Critical Paths under _INTERRUPT_InterruptManager in BANK5
+
+    None.
+
+Critical Paths under _main in BANK6
+
+    None.
+
+Critical Paths under _INTERRUPT_InterruptManager in BANK6
+
+    None.
+
+Critical Paths under _main in BANK7
+
+    None.
+
+Critical Paths under _INTERRUPT_InterruptManager in BANK7
+
+    None.
+
+Critical Paths under _main in BANK8
+
+    None.
+
+Critical Paths under _INTERRUPT_InterruptManager in BANK8
+
+    None.
+
+Critical Paths under _main in BANK9
+
+    None.
+
+Critical Paths under _INTERRUPT_InterruptManager in BANK9
+
+    None.
+
+Critical Paths under _main in BANK10
+
+    None.
+
+Critical Paths under _INTERRUPT_InterruptManager in BANK10
+
+    None.
+
+Critical Paths under _main in BANK11
+
+    None.
+
+Critical Paths under _INTERRUPT_InterruptManager in BANK11
+
+    None.
+
+Critical Paths under _main in BANK12
+
+    None.
+
+Critical Paths under _INTERRUPT_InterruptManager in BANK12
+
+    None.
+
+Critical Paths under _main in BANK13
+
+    None.
+
+Critical Paths under _INTERRUPT_InterruptManager in BANK13
+
+    None.
+
+Critical Paths under _main in BANK14
+
+    None.
+
+Critical Paths under _INTERRUPT_InterruptManager in BANK14
+
+    None.
+
+Critical Paths under _main in BANK15
+
+    None.
+
+Critical Paths under _INTERRUPT_InterruptManager in BANK15
+
+    None.
+
+Critical Paths under _main in BANK16
+
+    None.
+
+Critical Paths under _INTERRUPT_InterruptManager in BANK16
+
+    None.
+
+Critical Paths under _main in BANK17
+
+    None.
+
+Critical Paths under _INTERRUPT_InterruptManager in BANK17
+
+    None.
+
+Critical Paths under _main in BANK18
+
+    None.
+
+Critical Paths under _INTERRUPT_InterruptManager in BANK18
+
+    None.
+
+Critical Paths under _main in BANK19
+
+    None.
+
+Critical Paths under _INTERRUPT_InterruptManager in BANK19
+
+    None.
+
+Critical Paths under _main in BANK20
+
+    None.
+
+Critical Paths under _INTERRUPT_InterruptManager in BANK20
+
+    None.
+
+Critical Paths under _main in BANK21
+
+    None.
+
+Critical Paths under _INTERRUPT_InterruptManager in BANK21
+
+    None.
+
+Critical Paths under _main in BANK22
+
+    None.
+
+Critical Paths under _INTERRUPT_InterruptManager in BANK22
+
+    None.
+
+Critical Paths under _main in BANK23
+
+    None.
+
+Critical Paths under _INTERRUPT_InterruptManager in BANK23
+
+    None.
+
+Critical Paths under _main in BANK24
+
+    None.
+
+Critical Paths under _INTERRUPT_InterruptManager in BANK24
+
+    None.
+
+Critical Paths under _main in BANK25
+
+    None.
+
+Critical Paths under _INTERRUPT_InterruptManager in BANK25
+
+    None.
+
+Critical Paths under _main in BANK26
+
+    None.
+
+Critical Paths under _INTERRUPT_InterruptManager in BANK26
+
+    None.
+
+Critical Paths under _main in BANK27
+
+    None.
+
+Critical Paths under _INTERRUPT_InterruptManager in BANK27
+
+    None.
+
+Critical Paths under _main in BANK28
+
+    None.
+
+Critical Paths under _INTERRUPT_InterruptManager in BANK28
+
+    None.
+
+Critical Paths under _main in BANK29
+
+    None.
+
+Critical Paths under _INTERRUPT_InterruptManager in BANK29
+
+    None.
+
+Critical Paths under _main in BANK30
+
+    None.
+
+Critical Paths under _INTERRUPT_InterruptManager in BANK30
+
+    None.
+
+Critical Paths under _main in BANK31
+
+    None.
+
+Critical Paths under _INTERRUPT_InterruptManager in BANK31
+
+    None.
+
+Critical Paths under _main in BANK32
+
+    None.
+
+Critical Paths under _INTERRUPT_InterruptManager in BANK32
+
+    None.
+
+Critical Paths under _main in BANK33
+
+    None.
+
+Critical Paths under _INTERRUPT_InterruptManager in BANK33
+
+    None.
+
+Critical Paths under _main in BANK34
+
+    None.
+
+Critical Paths under _INTERRUPT_InterruptManager in BANK34
+
+    None.
+
+Critical Paths under _main in BANK35
+
+    None.
+
+Critical Paths under _INTERRUPT_InterruptManager in BANK35
+
+    None.
+
+Critical Paths under _main in BANK36
+
+    None.
+
+Critical Paths under _INTERRUPT_InterruptManager in BANK36
+
+    None.
+
+Critical Paths under _main in BANK37
+
+    None.
+
+Critical Paths under _INTERRUPT_InterruptManager in BANK37
+
+    None.
+
+Call Graph Tables:
+
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (0) _main                                                 1     1      0     210
+                                              8 COMRAM     1     1      0
+                          _boardInit
+                         _canReceive
+ ---------------------------------------------------------------------------------
+ (1) _canReceive                                           8     8      0      90
+                                              0 COMRAM     8     8      0
+ ---------------------------------------------------------------------------------
+ (1) _boardInit                                            1     1      0     105
+                                              5 COMRAM     1     1      0
+                            _canInit
+                      _interruptInit
+                            _oscInit
+                            _pmdInit
+                           _portInit
+                          _timerInit
+                           _uartInit
+ ---------------------------------------------------------------------------------
+ (2) _uartInit                                             0     0      0       0
+ ---------------------------------------------------------------------------------
+ (2) _timerInit                                            0     0      0       0
+ ---------------------------------------------------------------------------------
+ (2) _portInit                                             0     0      0       0
+ ---------------------------------------------------------------------------------
+ (2) _pmdInit                                              0     0      0       0
+ ---------------------------------------------------------------------------------
+ (2) _oscInit                                              0     0      0       0
+ ---------------------------------------------------------------------------------
+ (2) _interruptInit                                        0     0      0       0
+ ---------------------------------------------------------------------------------
+ (2) _canInit                                              1     1      0      90
+                                              4 COMRAM     1     1      0
+                           _canSetOP
+ ---------------------------------------------------------------------------------
+ (3) _canSetOP                                             4     4      0      60
+                                              0 COMRAM     4     4      0
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 3
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (4) _INTERRUPT_InterruptManager                           0     0      0       0
+                       _CAN1_RXI_ISR
+                           _TMR0_ISR
+ ---------------------------------------------------------------------------------
+ (5) _TMR0_ISR                                             0     0      0       0
+ ---------------------------------------------------------------------------------
+ (5) _CAN1_RXI_ISR                                         0     0      0       0
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 5
+ ---------------------------------------------------------------------------------
+
+ Call Graph Graphs:
+
+ _main (ROOT)
+   _boardInit
+     _canInit
+       _canSetOP
+     _interruptInit
+     _oscInit
+     _pmdInit
+     _portInit
+     _timerInit
+     _uartInit
+   _canReceive
+
+ _INTERRUPT_InterruptManager (ROOT)
+   _CAN1_RXI_ISR
+   _TMR0_ISR
+
+ Address spaces:
+Name               Size   Autos  Total    Cost      Usage
+BIGRAM            20FF      0       0      71        0.0%
+EEDATA             400      0       0       0        0.0%
+BITBANK37          100      0       0      70        0.0%
+BANK37             100      0       0      68        0.0%
+BITBANK36          100      0       0      66        0.0%
+BANK36             100      0       0      67        0.0%
+BITBANK35          100      0       0      64        0.0%
+BANK35             100      0       0      65        0.0%
+BITBANK34          100      0       0      62        0.0%
+BANK34             100      0       0      63        0.0%
+BITBANK33          100      0       0      60        0.0%
+BANK33             100      0       0      61        0.0%
+BITBANK32          100      0       0      58        0.0%
+BANK32             100      0       0      59        0.0%
+BITBANK31          100      0       0      56        0.0%
+BANK31             100      0       0      57        0.0%
+BITBANK30          100      0       0      54        0.0%
+BANK30             100      0       0      55        0.0%
+BITBANK29          100      0       0      52        0.0%
+BANK29             100      0       0      53        0.0%
+BITBANK28          100      0       0      50        0.0%
+BANK28             100      0       0      51        0.0%
+BITBANK27          100      0       0      48        0.0%
+BANK27             100      0       0      49        0.0%
+BITBANK26          100      0       0      46        0.0%
+BANK26             100      0       0      47        0.0%
+BITBANK25          100      0       0      44        0.0%
+BANK25             100      0       0      45        0.0%
+BITBANK24          100      0       0      42        0.0%
+BANK24             100      0       0      43        0.0%
+BITBANK23          100      0       0      40        0.0%
+BANK23             100      0       0      41        0.0%
+BITBANK22          100      0       0      38        0.0%
+BANK22             100      0       0      39        0.0%
+BITBANK21          100      0       0      36        0.0%
+BANK21             100      0       0      37        0.0%
+BITBANK20          100      0       0      34        0.0%
+BANK20             100      0       0      35        0.0%
+BITBANK19          100      0       0      32        0.0%
+BANK19             100      0       0      33        0.0%
+BITBANK18          100      0       0      30        0.0%
+BANK18             100      0       0      31        0.0%
+BITBANK17          100      0       0      28        0.0%
+BANK17             100      0       0      29        0.0%
+BITBANK16          100      0       0      26        0.0%
+BANK16             100      0       0      27        0.0%
+BITBANK15          100      0       0      24        0.0%
+BANK15             100      0       0      25        0.0%
+BITBANK14          100      0       0      22        0.0%
+BANK14             100      0       0      23        0.0%
+BITBANK13          100      0       0      20        0.0%
+BANK13             100      0       0      21        0.0%
+BITBANK12          100      0       0      18        0.0%
+BANK12             100      0       0      19        0.0%
+BITBANK11          100      0       0      16        0.0%
+BANK11             100      0       0      17        0.0%
+BITBANK10          100      0       0      14        0.0%
+BANK10             100      0       0      15        0.0%
+BITBANK9           100      0       0      12        0.0%
+BANK9              100      0       0      13        0.0%
+BITBANK8           100      0       0      10        0.0%
+BANK8              100      0       0      11        0.0%
+BITBANK7           100      0       0       8        0.0%
+BANK7              100      0       0       9        0.0%
+BITBANK6           100      0       0       6        0.0%
+BANK6              100      0       0       7        0.0%
+BITBANK5            A0      0       0       4        0.0%
+BANK5               A0      0       0       5        0.0%
+BITCOMRAM           5F      0       0       0        0.0%
+COMRAM              5F      9      1F       1       32.6%
+BITSFR_5             0      0       0     200        0.0%
+SFR_5                0      0       0     200        0.0%
+BITSFR_4             0      0       0     200        0.0%
+SFR_4                0      0       0     200        0.0%
+BITSFR_3             0      0       0     200        0.0%
+SFR_3                0      0       0     200        0.0%
+BITSFR_2             0      0       0     200        0.0%
+SFR_2                0      0       0     200        0.0%
+BITSFR_1             0      0       0     200        0.0%
+SFR_1                0      0       0     200        0.0%
+BITSFR               0      0       0     200        0.0%
+SFR                  0      0       0     200        0.0%
+STACK                0      0       0       2        0.0%
+NULL                 0      0       0       0        0.0%
+ABS                  0      0      1F      69        0.0%
+DATA                 0      0      1F       3        0.0%
+CODE                 0      0       0       0        0.0%
+
+
+Microchip Technology PIC18 Macro Assembler V2.32 build 20210201212658 
+Symbol Table                                                                                   Fri Jul 23 16:16:46 2021
+
+              __end_of_interruptInit 032A                                   u10 00B2  
+                                 u11 00AE                                   u20 00C8  
+                                 u21 00C4                                   u30 00EA  
+                                 u31 00E6                                   u40 003A  
+                                 u41 0036                                   u50 0152  
+                                 u51 014E                                  l211 030A  
+                                l220 028C                                  l214 02B0  
+                                l224 00A4                                  l208 0328  
+                                l233 0084                                  l217 01B8  
+                                l250 0152                                  l236 031C  
+                                l229 00EC                                  l239 02D2  
+                                l930 00B2                                  l932 00C8  
+                                l934 00D0                                  l926 0088  
+                                l942 031E                                  l950 02AE  
+                                l936 00D4                                  l928 0094  
+                                l944 02F4                                  l960 018C  
+                                l952 0154                                  l938 00EA  
+                                l946 028E                                  l962 018E  
+                                l954 0164                                  l970 024E  
+                                l980 003A                                  l972 001E  
+                                l948 02AC                                  l964 0194  
+                                l956 0178                                  l990 007E  
+                                l982 0068                                  l974 001E  
+                                l966 0196                                  l958 018A  
+                                l992 0082                                  l984 0070  
+                                l976 0022                                  l968 0198  
+                                l986 0076                                  l978 002A  
+                                l988 007A                                  l996 030C  
+                                l998 0312                                  u100 01D0  
+                                u101 01CC                                  u110 01E0  
+                                u111 01DC                                  u120 01F8  
+                                u121 01F4                                  wreg 0004E8  
+                               l1010 02B6                                 l1020 02CC  
+                               l1012 02BA                                 l1022 02D0  
+                               l1014 02BE                                 l1030 010E  
+                               l1016 02C2                                 l1008 02B2  
+                               l1040 0136                                 l1018 02C6  
+                               l1026 00EE                                 l1036 0116  
+                               l1028 0106                                 l1060 01D0  
+                               l1038 0132                                 l1062 01E0  
+                               l1064 01E4                                 l1056 01BA  
+                               l1066 01E8                                 l1058 01C0  
+                               l1068 01F8                                 _LATA 0004BE  
+                               _LATB 0004BF                                 _LATC 0004C0  
+                       _CAN1_RXI_ISR 0332                                 _PMD0 000060  
+                               _PMD1 000061                                 _PMD2 000062  
+                               _PMD3 000063                                 _PMD4 000064  
+                               _PMD5 000065                                 _PMD6 000066  
+                               _PMD7 000067                                 _PMD8 000068  
+                               i2l21 0330                                 i2l24 0338  
+                               i2l33 024C                                 i2l29 022A  
+                               _WPUA 000401                                 _WPUB 000409  
+                               _WPUC 000411                                 _WPUE 000421  
+                               _main 01BA                                 indf1 0004E7  
+                               indf2 0004DF                                 fsr1l 0004E1  
+                               fsr2l 0004D9                                 start 001A  
+                       ___param_bank 000000                                ?_main 0517  
+                              _U1P1H 0002A6                                _U1P2H 0002A8  
+                              _U1P1L 0002A5                                _U1P3H 0002AA  
+                              _U1P2L 0002A7                                _U1P3L 0002A9  
+                              _U1UIR 0002B1                      __end_of_canInit 0086  
+                              _OSCEN 0000B3                                _TMR0H 000319  
+                              _TMR0L 000318                                _TRISA 0004C6  
+                              _TRISB 0004C7                                _TRISC 0004C8  
+                              _TRISE 0004CA                     __end_of_TMR0_ISR 0332  
+                    __end_of_pmdInit 02B2                      __end_of_oscInit 030C  
+                              status 0004D8                      __initialization 02D4  
+                       __end_of_main 0204          ?_INTERRUPT_InterruptManager 0517  
+                             ??_main 051F                        __activetblptr 000000  
+                             _C1CONH 000101                               _C1CONL 000100  
+                             _C1CONU 000102                               _ANSELA 000400  
+                             _ANSELB 000408                               _ANSELC 000410  
+                             _T0CON0 00031A                               _T0CON1 00031B  
+                    canSetOP@success 0519                               _U1CON0 0002AB  
+                             _U1CON1 0002AC                               _U1CON2 0002AD  
+                             _U1BRGH 0002AF                               _U1FIFO 0002B0  
+                             _U1BRGL 0002AE                               _RB4PPS 00020D  
+                             _ODCONA 000402                               _ODCONB 00040A  
+                             _ODCONC 000412                               i2l1000 032A  
+                             i2l1002 032E                               _RC7PPS 000218  
+                             i2l1004 0332                               i2l1006 0336  
+                             i2l1050 0238                               i2l1042 0204  
+                             i2l1052 0246                               i2l1044 0212  
+                             i2l1054 024A                               i2l1046 0220  
+                             i2l1048 0224                               _INLVLA 000404  
+                             _INLVLB 00040C                               _INLVLC 000414  
+                             _INLVLE 000424                     __end_of_canSetOP 00EE  
+                             _OSCFRQ 0000B1                               i2u6_40 0212  
+                             i2u6_41 020E                               i2u7_40 0220  
+                             i2u7_41 021C                               i2u8_40 0238  
+                             i2u8_41 0234                               i2u9_40 0246  
+                             i2u9_41 0242                               _canMsg 0501  
+                          ??_canInit 051B                               clear_0 02DA  
+                             isa$std 000001                            ??_pmdInit 0517  
+                   __end_of_uartInit 028E                            ??_oscInit 0517  
+                   __end_of_portInit 01BA                           __accesstop 0560  
+            __end_of__initialization 02EE                        ___rparam_used 000001  
+                     __pcstackCOMRAM 0517                            ?_TMR0_ISR 0517  
+                         _canReceive 00EE                   __size_of_boardInit 0022  
+                            IVTBASEH 00045E                              IVTBASEL 00045D  
+                            IVTBASEU 00045F                           ??_TMR0_ISR 0517  
+                          _C1NBTCFGH 000105                            _C1NBTCFGL 000104  
+                          _C1NBTCFGT 000107                            _C1NBTCFGU 000106  
+                          ?_canSetOP 0517                              _U1ERRIE 0002B3  
+                            _U1ERRIR 0002B2                   __size_of_timerInit 0012  
+                            _U1RXPPS 000272                              _OSCCON1 0000AD  
+                            _OSCCON3 0000AF                              _OSCTUNE 0000B0  
+                        _C1FIFOCON1H 00015D                          _C1FIFOCON1L 00015C  
+                        _C1FIFOCON1T 00015F                          _C1FIFOCON1U 00015E  
+                            _SLRCONA 000403                              _SLRCONB 00040B  
+                            _SLRCONC 000413               __size_of_interruptInit 000C  
+                  __end_of_boardInit 02D4                         canSetOP@code 051A  
+                            __Hparam 0000                              __Lparam 0000  
+                          ?_uartInit 0517                            ?_portInit 0517  
+                            _canInit 001E                              __pcinit 02D4  
+                        ?_canReceive 0517                              __ramtop 2600  
+                            __ptext0 01BA                              __ptext1 00EE  
+                            __ptext2 02B2                              __ptext3 024E  
+                            __ptext4 030C                              __ptext5 0154  
+                            __ptext6 028E                              __ptext7 02F4  
+                            __ptext8 031E                              __ptext9 001E  
+                         ??_canSetOP 0517                              _pmdInit 028E  
+                            _oscInit 02F4                        _received_flag 0516  
+               end_of_initialization 02EE                    __end_of_timerInit 031E  
+                         ??_uartInit 0517                           ??_portInit 0517  
+                            postinc0 0004EE                        _interruptInit 031E  
+                 canReceive@fifoAddr 0517                  __size_of_canReceive 0066  
+                     ?_interruptInit 0517                    __size_of_TMR0_ISR 0008  
+                start_initialization 02D4                           ivt0x8_base 0008  
+                      ?_CAN1_RXI_ISR 0517                       canReceive@FIFO 051B  
+                       _measure_flag 0515                          __pbssCOMRAM 0501  
+                  __size_of_canSetOP 0068                       ??_CAN1_RXI_ISR 0517  
+                          _boardInit 02B2                      ??_interruptInit 0517  
+                           _C1FIFOBA 00014C                            canSetOP@i 0517  
+                  __size_of_uartInit 0040                             ?_canInit 0517  
+                  __size_of_portInit 0066                         ??_canReceive 0517  
+       ??_INTERRUPT_InterruptManager 0517                             ?_pmdInit 0517  
+                         _C1CONHbits 000101                             ?_oscInit 0517  
+                           _CANRXPPS 00023D                           _C1CONTbits 000103  
+                         _C1CONUbits 000102                          canReceive@i 051D  
+                         _C1INTHbits 00011D                   __end_of_canReceive 0154  
+                           _PIE3bits 0004A1                             _PIE4bits 0004A2  
+__size_of_INTERRUPT_InterruptManager 004A                             _PIR3bits 0004B1  
+                           _PIR4bits 0004B2                           ?_boardInit 0517  
+                          _timerInit 030C                             _TMR0_ISR 032A  
+                          main@setup 051F                          _INTCON0bits 0004D6  
+                           __Hrparam 0000                             __Lrparam 0000  
+                         ?_timerInit 0517                 __end_of_CAN1_RXI_ISR 033A  
+                   __size_of_canInit 0068                             _canSetOP 0086  
+                   __size_of_pmdInit 0024                             __pivt0x8 0008  
+                   __size_of_oscInit 0018                             _fifoAddr 0511  
+                           __ptext10 0086                             __ptext11 0204  
+                           __ptext12 032A                             __ptext13 0332  
+                      __size_of_main 004A                     boardInit@success 051C  
+                        ??_boardInit 051C                             _uartInit 024E  
+                           isa$xinst 000000                             _portInit 0154  
+ __end_of_INTERRUPT_InterruptManager 024E           _INTERRUPT_InterruptManager 0204  
+                           intlevel2 0000                      canInit@complete 051B  
+                        ??_timerInit 0517                __size_of_CAN1_RXI_ISR 0008  

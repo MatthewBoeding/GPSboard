@@ -1,0 +1,424 @@
+[p GLOBOPT AUTOSTATIC IEEE_FLT IEEE_DBL LFSROK EMI_WORD ]
+[d version 1.1 ]
+[d edition pro ]
+[d chip 18F26Q84 ]
+[d frameptr 1249 ]
+"5 C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c
+[v _interruptInit interruptInit `(v  1 e 1 0 ]
+"16
+[v _oscInit oscInit `(v  1 e 1 0 ]
+"28
+[v _pmdInit pmdInit `(v  1 e 1 0 ]
+"43
+[v _portInit portInit `(v  1 e 1 0 ]
+"92
+[v _uartInit uartInit `(v  1 e 1 0 ]
+"116
+[v _canSetOP canSetOP `(a  1 e 1 0 ]
+"131
+[v _canInit canInit `(a  1 e 1 0 ]
+"171
+[v _timerInit timerInit `(v  1 e 1 0 ]
+"186
+[v _boardInit boardInit `(a  1 e 1 0 ]
+"8 C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/can.c
+[v _canReceive canReceive `(v  1 e 1 0 ]
+"4 C:\Program Files\Microchip\xc8\v2.32\pic\sources\c99\common\fleq.c
+[v ___fleq __fleq `(b  1 e 0 0 ]
+"62 C:\Program Files\Microchip\xc8\v2.32\pic\sources\c99\common\float.c
+[v ___ftpack __ftpack `(f  1 e 4 0 ]
+"86 C:\Program Files\Microchip\xc8\v2.32\pic\sources\c99\common\ftadd.c
+[v ___ftadd __ftadd `(f  1 e 4 0 ]
+"54 C:\Program Files\Microchip\xc8\v2.32\pic\sources\c99\common\ftdiv.c
+[v ___ftdiv __ftdiv `(f  1 e 4 0 ]
+"62 C:\Program Files\Microchip\xc8\v2.32\pic\sources\c99\common\ftmul.c
+[v ___ftmul __ftmul `(f  1 e 4 0 ]
+"19 C:\Program Files\Microchip\xc8\v2.32\pic\sources\c99\common\ftsub.c
+[v ___ftsub __ftsub `(f  1 e 4 0 ]
+"10 C:\Program Files\Microchip\xc8\v2.32\pic\sources\c99\common\sprcadd.c
+[v ___fladd __fladd `(d  1 e 4 0 ]
+"245
+[v ___flsub __flsub `(d  1 e 4 0 ]
+"11 C:\Program Files\Microchip\xc8\v2.32\pic\sources\c99\common\sprcdiv.c
+[v ___fldiv __fldiv `(d  1 e 4 0 ]
+"8 C:\Program Files\Microchip\xc8\v2.32\pic\sources\c99\common\sprcmul.c
+[v ___flmul __flmul `(d  1 e 4 0 ]
+"15 C:\Program Files\Microchip\xc8\v2.32\pic\sources\c99\common\Umul32.c
+[v ___lmul __lmul `(ul  1 e 4 0 ]
+"91 C:\Program Files\Microchip\xc8\v2.32\pic\sources\c99\common\Umul64.c
+[v ___omul __omul `(uo  1 e 8 0 ]
+"164 C:\Users\developer\Documents\MBoeding\PIC18\PIC18_GPSboard\gpsBoard.X\main.c
+[v _TMR0_ISR TMR0_ISR `(v  1 e 1 0 ]
+"169
+[v _CAN1_RXI_ISR CAN1_RXI_ISR `(v  1 e 1 0 ]
+"174
+[v _INTERRUPT_InterruptManager INTERRUPT_InterruptManager `IIH(v  1 e 1 0 ]
+"191
+[v _main main `(v  1 e 1 0 ]
+[s S24 . 1 `uc 1 SPI1RXIF 1 0 :1:0 
+`uc 1 SPI1TXIF 1 0 :1:1 
+`uc 1 SPI1IF 1 0 :1:2 
+`uc 1 TMR2IF 1 0 :1:3 
+`uc 1 TMR1IF 1 0 :1:4 
+`uc 1 TMR1GIF 1 0 :1:5 
+`uc 1 CCP1IF 1 0 :1:6 
+`uc 1 TMR0IF 1 0 :1:7 
+]
+"700 C:/Users/developer/.mchp_packs/Microchip/PIC18F-Q_DFP/1.12.193/xc8\pic\include\proc\pic18f26q84.h
+[u S33 . 1 `S24 1 . 1 0 ]
+[v _PIR3bits PIR3bits `VES33  1 e 1 @1201 ]
+[s S87 . 1 `uc 1 U1RXIF 1 0 :1:0 
+`uc 1 U1TXIF 1 0 :1:1 
+`uc 1 U1EIF 1 0 :1:2 
+`uc 1 U1IF 1 0 :1:3 
+`uc 1 CANRXIF 1 0 :1:4 
+`uc 1 CANTXIF 1 0 :1:5 
+`uc 1 PWM1PIF 1 0 :1:6 
+`uc 1 PWM1IF 1 0 :1:7 
+]
+"762
+[u S96 . 1 `S87 1 . 1 0 ]
+[v _PIR4bits PIR4bits `VES96  1 e 1 @1202 ]
+"1339
+[v _PMD0 PMD0 `VEuc  1 e 1 @96 ]
+"1405
+[v _PMD1 PMD1 `VEuc  1 e 1 @97 ]
+"1467
+[v _PMD2 PMD2 `VEuc  1 e 1 @98 ]
+"1474
+[v _LATA LATA `VEuc  1 e 1 @1214 ]
+"1514
+[v _PMD3 PMD3 `VEuc  1 e 1 @99 ]
+"1536
+[v _LATB LATB `VEuc  1 e 1 @1215 ]
+"1565
+[v _PMD4 PMD4 `VEuc  1 e 1 @100 ]
+"1598
+[v _LATC LATC `VEuc  1 e 1 @1216 ]
+"1621
+[v _PMD5 PMD5 `VEuc  1 e 1 @101 ]
+"1660
+[v _TRISA TRISA `VEuc  1 e 1 @1222 ]
+"1678
+[v _PMD6 PMD6 `VEuc  1 e 1 @102 ]
+"1722
+[v _TRISB TRISB `VEuc  1 e 1 @1223 ]
+"1740
+[v _PMD7 PMD7 `VEuc  1 e 1 @103 ]
+"1784
+[v _TRISC TRISC `VEuc  1 e 1 @1224 ]
+"1802
+[v _PMD8 PMD8 `VEuc  1 e 1 @104 ]
+"1846
+[v _TRISE TRISE `VEuc  1 e 1 @1226 ]
+[s S166 . 1 `uc 1 INT0EDG 1 0 :1:0 
+`uc 1 INT1EDG 1 0 :1:1 
+`uc 1 INT2EDG 1 0 :1:2 
+`uc 1 . 1 0 :2:3 
+`uc 1 IPEN 1 0 :1:5 
+`uc 1 GIEL 1 0 :1:6 
+`uc 1 GIE 1 0 :1:7 
+]
+"2094
+[s S174 . 1 `uc 1 . 1 0 :7:0 
+`uc 1 GIEH 1 0 :1:7 
+]
+[u S177 . 1 `S166 1 . 1 0 `S174 1 . 1 0 ]
+[v _INTCON0bits INTCON0bits `VES177  1 e 1 @1238 ]
+"5336
+[v _OSCCON1 OSCCON1 `VEuc  1 e 1 @173 ]
+"5476
+[v _OSCCON3 OSCCON3 `VEuc  1 e 1 @175 ]
+"5516
+[v _OSCTUNE OSCTUNE `VEuc  1 e 1 @176 ]
+"5574
+[v _OSCFRQ OSCFRQ `VEuc  1 e 1 @177 ]
+"5776
+[v _OSCEN OSCEN `VEuc  1 e 1 @179 ]
+"8944
+[v _C1CONL C1CONL `VEuc  1 e 1 @256 ]
+"9014
+[v _C1CONH C1CONH `VEuc  1 e 1 @257 ]
+[s S362 . 1 `uc 1 WAKFIL 1 0 :1:0 
+`uc 1 WFT 1 0 :2:1 
+`uc 1 BUSY 1 0 :1:3 
+`uc 1 BRSDIS 1 0 :1:4 
+`uc 1 SIDL 1 0 :1:5 
+`uc 1 FRZ 1 0 :1:6 
+`uc 1 ON 1 0 :1:7 
+]
+"9035
+[s S370 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 WFT0 1 0 :1:1 
+`uc 1 WFT1 1 0 :1:2 
+]
+[u S374 . 1 `S362 1 . 1 0 `S370 1 . 1 0 ]
+[v _C1CONHbits C1CONHbits `VES374  1 e 1 @257 ]
+"9085
+[v _C1CONU C1CONU `VEuc  1 e 1 @258 ]
+[s S334 . 1 `uc 1 RTXAT 1 0 :1:0 
+`uc 1 ESIGM 1 0 :1:1 
+`uc 1 SERR2LOM 1 0 :1:2 
+`uc 1 STEF 1 0 :1:3 
+`uc 1 TXQEN 1 0 :1:4 
+`uc 1 OPMOD 1 0 :3:5 
+]
+"9106
+[s S341 . 1 `uc 1 . 1 0 :5:0 
+`uc 1 OPMOD0 1 0 :1:5 
+`uc 1 OPMOD1 1 0 :1:6 
+`uc 1 OPMOD2 1 0 :1:7 
+]
+[u S346 . 1 `S334 1 . 1 0 `S341 1 . 1 0 ]
+[v _C1CONUbits C1CONUbits `VES346  1 e 1 @258 ]
+[s S285 . 1 `uc 1 REQOP 1 0 :3:0 
+`uc 1 ABAT 1 0 :1:3 
+`uc 1 TXBWS 1 0 :4:4 
+]
+"9178
+[s S289 . 1 `uc 1 REQOP0 1 0 :1:0 
+`uc 1 REQOP1 1 0 :1:1 
+`uc 1 REQOP2 1 0 :1:2 
+`uc 1 . 1 0 :1:3 
+`uc 1 TXBWS0 1 0 :1:4 
+`uc 1 TXBWS1 1 0 :1:5 
+`uc 1 TXBWS2 1 0 :1:6 
+`uc 1 TXBWS3 1 0 :1:7 
+]
+[u S298 . 1 `S285 1 . 1 0 `S289 1 . 1 0 ]
+[v _C1CONTbits C1CONTbits `VES298  1 e 1 @259 ]
+"9233
+[v _C1NBTCFGL C1NBTCFGL `VEuc  1 e 1 @260 ]
+"9297
+[v _C1NBTCFGH C1NBTCFGH `VEuc  1 e 1 @261 ]
+"9361
+[v _C1NBTCFGU C1NBTCFGU `VEuc  1 e 1 @262 ]
+"9431
+[v _C1NBTCFGT C1NBTCFGT `VEuc  1 e 1 @263 ]
+[s S315 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 TXATIF 1 0 :1:2 
+`uc 1 RXOVIF 1 0 :1:3 
+`uc 1 SERRIF 1 0 :1:4 
+`uc 1 CERRIF 1 0 :1:5 
+`uc 1 WAKIF 1 0 :1:6 
+`uc 1 IVMIF 1 0 :1:7 
+]
+"10467
+[u S323 . 1 `S315 1 . 1 0 ]
+[v _C1INTHbits C1INTHbits `VES323  1 e 1 @285 ]
+"13232
+[v _C1FIFOBA C1FIFOBA `VEul  1 e 4 @332 ]
+"14150
+[v _C1FIFOCON1L C1FIFOCON1L `VEuc  1 e 1 @348 ]
+"14212
+[v _C1FIFOCON1H C1FIFOCON1H `VEuc  1 e 1 @349 ]
+"14244
+[v _C1FIFOCON1U C1FIFOCON1U `VEuc  1 e 1 @350 ]
+"14314
+[v _C1FIFOCON1T C1FIFOCON1T `VEuc  1 e 1 @351 ]
+"24366
+[v _RB4PPS RB4PPS `VEuc  1 e 1 @525 ]
+"24916
+[v _RC7PPS RC7PPS `VEuc  1 e 1 @536 ]
+"24966
+[v _CANRXPPS CANRXPPS `VEuc  1 e 1 @573 ]
+"29041
+[v _U1RXPPS U1RXPPS `VEuc  1 e 1 @626 ]
+"31598
+[v _U1P1L U1P1L `VEuc  1 e 1 @677 ]
+"31618
+[v _U1P1H U1P1H `VEuc  1 e 1 @678 ]
+"31645
+[v _U1P2L U1P2L `VEuc  1 e 1 @679 ]
+"31665
+[v _U1P2H U1P2H `VEuc  1 e 1 @680 ]
+"31692
+[v _U1P3L U1P3L `VEuc  1 e 1 @681 ]
+"31712
+[v _U1P3H U1P3H `VEuc  1 e 1 @682 ]
+"31732
+[v _U1CON0 U1CON0 `VEuc  1 e 1 @683 ]
+"31860
+[v _U1CON1 U1CON1 `VEuc  1 e 1 @684 ]
+"31940
+[v _U1CON2 U1CON2 `VEuc  1 e 1 @685 ]
+"32089
+[v _U1BRGL U1BRGL `VEuc  1 e 1 @686 ]
+"32109
+[v _U1BRGH U1BRGH `VEuc  1 e 1 @687 ]
+"32129
+[v _U1FIFO U1FIFO `VEuc  1 e 1 @688 ]
+"32259
+[v _U1UIR U1UIR `VEuc  1 e 1 @689 ]
+"32315
+[v _U1ERRIR U1ERRIR `VEuc  1 e 1 @690 ]
+"32427
+[v _U1ERRIE U1ERRIE `VEuc  1 e 1 @691 ]
+"38550
+[v _TMR0L TMR0L `VEuc  1 e 1 @792 ]
+"38688
+[v _TMR0H TMR0H `VEuc  1 e 1 @793 ]
+"38942
+[v _T0CON0 T0CON0 `VEuc  1 e 1 @794 ]
+"39040
+[v _T0CON1 T0CON1 `VEuc  1 e 1 @795 ]
+"58425
+[v _ANSELA ANSELA `VEuc  1 e 1 @1024 ]
+"58487
+[v _WPUA WPUA `VEuc  1 e 1 @1025 ]
+"58549
+[v _ODCONA ODCONA `VEuc  1 e 1 @1026 ]
+"58611
+[v _SLRCONA SLRCONA `VEuc  1 e 1 @1027 ]
+"58673
+[v _INLVLA INLVLA `VEuc  1 e 1 @1028 ]
+"58921
+[v _ANSELB ANSELB `VEuc  1 e 1 @1032 ]
+"58983
+[v _WPUB WPUB `VEuc  1 e 1 @1033 ]
+"59045
+[v _ODCONB ODCONB `VEuc  1 e 1 @1034 ]
+"59107
+[v _SLRCONB SLRCONB `VEuc  1 e 1 @1035 ]
+"59169
+[v _INLVLB INLVLB `VEuc  1 e 1 @1036 ]
+"59417
+[v _ANSELC ANSELC `VEuc  1 e 1 @1040 ]
+"59479
+[v _WPUC WPUC `VEuc  1 e 1 @1041 ]
+"59541
+[v _ODCONC ODCONC `VEuc  1 e 1 @1042 ]
+"59603
+[v _SLRCONC SLRCONC `VEuc  1 e 1 @1043 ]
+"59665
+[v _INLVLC INLVLC `VEuc  1 e 1 @1044 ]
+"59913
+[v _WPUE WPUE `VEuc  1 e 1 @1057 ]
+"59934
+[v _INLVLE INLVLE `VEuc  1 e 1 @1060 ]
+[s S45 . 1 `uc 1 SPI1RXIE 1 0 :1:0 
+`uc 1 SPI1TXIE 1 0 :1:1 
+`uc 1 SPI1IE 1 0 :1:2 
+`uc 1 TMR2IE 1 0 :1:3 
+`uc 1 TMR1IE 1 0 :1:4 
+`uc 1 TMR1GIE 1 0 :1:5 
+`uc 1 CCP1IE 1 0 :1:6 
+`uc 1 TMR0IE 1 0 :1:7 
+]
+"65251
+[u S54 . 1 `S45 1 . 1 0 ]
+"65251
+"65251
+[v _PIE3bits PIE3bits `VES54  1 e 1 @1185 ]
+[s S66 . 1 `uc 1 U1RXIE 1 0 :1:0 
+`uc 1 U1TXIE 1 0 :1:1 
+`uc 1 U1EIE 1 0 :1:2 
+`uc 1 U1IE 1 0 :1:3 
+`uc 1 CANRXIE 1 0 :1:4 
+`uc 1 CANTXIE 1 0 :1:5 
+`uc 1 PWM1PIE 1 0 :1:6 
+`uc 1 PWM1IE 1 0 :1:7 
+]
+"65313
+[u S75 . 1 `S66 1 . 1 0 ]
+"65313
+"65313
+[v _PIE4bits PIE4bits `VES75  1 e 1 @1186 ]
+"5 C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/can.c
+[v _fifoAddr fifoAddr `VEul  1 s 4 fifoAddr ]
+"159 C:\Users\developer\Documents\MBoeding\PIC18\PIC18_GPSboard\gpsBoard.X\main.c
+[v _received_flag received_flag `a  1 e 1 0 ]
+"160
+[v _measure_flag measure_flag `a  1 e 1 0 ]
+"161
+[v _canMsg canMsg `[16]uc  1 e 16 0 ]
+"191
+[v _main main `(v  1 e 1 0 ]
+{
+"193
+[v main@setup setup `a  1 a 1 8 ]
+"205
+} 0
+"8 C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/can.c
+[v _canReceive canReceive `(v  1 e 1 0 ]
+{
+"12
+[v canReceive@i i `i  1 a 2 6 ]
+"10
+[v canReceive@fifoAddr fifoAddr `ul  1 a 4 0 ]
+"11
+[v canReceive@FIFO FIFO `*.39uc  1 a 2 4 ]
+"16
+} 0
+"186 C:/Users/developer/Documents/MBoeding/PIC18/PIC18_GPSboard/gpsBoard.X/libs/boardInit.c
+[v _boardInit boardInit `(a  1 e 1 0 ]
+{
+"192
+[v boardInit@success success `a  1 a 1 5 ]
+"195
+} 0
+"92
+[v _uartInit uartInit `(v  1 e 1 0 ]
+{
+"114
+} 0
+"171
+[v _timerInit timerInit `(v  1 e 1 0 ]
+{
+"184
+} 0
+"43
+[v _portInit portInit `(v  1 e 1 0 ]
+{
+"90
+} 0
+"28
+[v _pmdInit pmdInit `(v  1 e 1 0 ]
+{
+"41
+} 0
+"16
+[v _oscInit oscInit `(v  1 e 1 0 ]
+{
+"26
+} 0
+"5
+[v _interruptInit interruptInit `(v  1 e 1 0 ]
+{
+"14
+} 0
+"131
+[v _canInit canInit `(a  1 e 1 0 ]
+{
+"133
+[v canInit@complete complete `a  1 a 1 4 ]
+"170
+} 0
+"116
+[v _canSetOP canSetOP `(a  1 e 1 0 ]
+{
+[v canSetOP@code code `uc  1 a 1 wreg ]
+"118
+[v canSetOP@i i `us  1 a 2 0 ]
+"117
+[v canSetOP@success success `a  1 a 1 2 ]
+"116
+[v canSetOP@code code `uc  1 a 1 wreg ]
+[v canSetOP@code code `uc  1 a 1 3 ]
+"129
+} 0
+"174 C:\Users\developer\Documents\MBoeding\PIC18\PIC18_GPSboard\gpsBoard.X\main.c
+[v _INTERRUPT_InterruptManager INTERRUPT_InterruptManager `IIH(v  1 e 1 0 ]
+{
+"190
+} 0
+"164
+[v _TMR0_ISR TMR0_ISR `(v  1 e 1 0 ]
+{
+"167
+} 0
+"169
+[v _CAN1_RXI_ISR CAN1_RXI_ISR `(v  1 e 1 0 ]
+{
+"172
+} 0
