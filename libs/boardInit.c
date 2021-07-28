@@ -1,3 +1,4 @@
+#include <xc.h>
 #include <stdbool.h>
 #include "boardInit.h"
 
@@ -5,11 +6,7 @@ void interruptInit(void){
     //Global interrupts, no priority
     INTCON0bits.GIE = 1;
     INTCON0bits.IPEN = 0;
-    //CAN RX interrupt
-    PIE4bits.CANRXIE = 1; 
-    PIR4bits.CANRXIF = 0;
-    //Timer 0 interrupt
-    PIE3bits.TMR0IE = 1;
+
 }
 
 void oscInit(void){
@@ -27,14 +24,14 @@ void oscInit(void){
 void pmdInit(void){
     PMD0 = 0x00;
     //Enable Timer 0
-    PMD1 = 0x01;
+    PMD1 = 0xFE;
     //Enable CAN
-    PMD2 = 0x03;
+    PMD2 = 0x00;
     PMD3 = 0xE7;
     PMD4 = 0x7F;
     PMD5 = 0xF7;
-    // Only enable UART 1 
-    PMD6 = 0xF7; 
+    // Only enable UART 1 and SPI1
+    PMD6 = 0xF5; 
     PMD7 = 0xFF;
     PMD8 = 0xFF;   
 }
@@ -49,10 +46,10 @@ void portInit(void){
     TRISE = 0x08;
     TRISA = 0xFF;
     TRISB = 0xEF;
-    TRISC = 0x7F;
+    TRISC = 0x7D;
 
     //Analog select
-    ANSELC = 0xBF;
+    ANSELC = 0xBD;
     ANSELB = 0xF7;
     ANSELA = 0xFF;
 
@@ -86,6 +83,9 @@ void portInit(void){
     U1RXPPS = 0x16;
     //UART 1 TX -> RC7
     RC7PPS = 0x20;   //RC7->UART1:TX1; 
+    
+    RC0PPS = 0x32;   //RC0->SPI1:SDO1;    
+    SPI1SCKPPS = 0x11;   //RC1->SPI1:SCK1;
 }
 
 void uartInit(void){
@@ -153,7 +153,7 @@ bool canInit(void)
     // BRP 0; 
     C1NBTCFGT = 0x00;
     
-    complete = canSetOP(6);
+    complete = canSetOP(5);
     }
     
     //Set as receive queue, interrupt for FIFO not empty
@@ -165,10 +165,32 @@ bool canInit(void)
     //FIFO1 8 byte payload, size: 2 (32 BYTES RAM)
     C1FIFOCON1T = 0x01;
     
+    //CAN RX interrupt
+    PIR4bits.CANRXIF = 0;
+    PIE4bits.CANRXIE = 1; 
+
+    
     return complete;
+}
+
+void spiInit(void){
+    //EN disabled; LSBF MSb first; MST bus slave; BMODE last byte; 
+    SPI1CON0 = 0x02;
+    //SMP Middle; CKE Active to idle; CKP Idle:Low, Active:High; FST disabled; SSP active high; SDIP active high; SDOP active high; 
+    SPI1CON1 = 0x40;
+    //SSET disabled; TXR not required for a transfer; RXR data is not stored in the FIFO; 
+    SPI1CON2 = 0x00;
+    //CLKSEL FOSC; 
+    SPI1CLK = 0x00;
+    //BAUD 4; 
+    SPI1BAUD = 0x04;
+    TRISCbits.TRISC3 = 0;
+	//Turn it on
+	SPICON0bits.EN = 1;
 }
 void timerInit(void){
     //~4 SECOND DELAY
+    
     
     //TIMER 0: INTERNAL CLOCK SYNC TO F0SC/4 1:64
     T0CON1 = 0X66;    
@@ -176,9 +198,14 @@ void timerInit(void){
     //TMR0 = 65535 / 250KHZ = .026214 sec
     TMR0H = 0XFF;
     TMR0L = 0XFF;
+    
+    PIR3bits.TMR0IF = 0;
+    //Timer 0 interrupt
+    PIE3bits.TMR0IE = 1;
+    
     //.026214*16 = 4.19 seconds between interrupts
     //TURN ON (16 BIT MODE) 1:16
-    T0CON0 = 0X9f;
+    T0CON0 = 0X9f; 
     
 }
 
