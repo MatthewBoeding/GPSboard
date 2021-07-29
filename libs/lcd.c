@@ -47,14 +47,14 @@ void writeRegister8(uint8_t reg, uint8_t data)
 void writeRegister16(uint16_t reg, uint16_t data)
 {
     uint8_t hi, lo;
-    hi= uint8_t(reg);
-    lo = uint8_t(reg >> 8);
+    hi= (uint8_t)reg;
+    lo = (uint8_t)reg >> 8;
     SS = __ACTIVE__;
     CD = __CMD__;
     SPI1TXB = hi;
     SPI1TXB = lo;
-    hi = uint8_t(data);
-    lo = uint8_t(data >> 8);
+    hi = (uint8_t)data;
+    lo = (uint8_t)data >> 8;
     CD=__DATA__;
     SPI1TXB = hi;
     SPI1TXB = lo;
@@ -66,17 +66,17 @@ void setAddrWindow(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2)
     CD = __CMD__;
     write8(ILI9341_COLADDRSET);
     CD = __DATA__;
-    write8(x1 >> 8);
-    write8(x1);
-    write8(x2 >> 8);
-    write8(x2);
+    write8((uint8_t)(x1 >> 8));
+    write8((uint8_t)x1);
+    write8((uint8_t)(x2 >> 8));
+    write8((uint8_t)x2);
     CD = __CMD__;
     write8(ILI9341_PAGEADDRSET);
     CD = __DATA__;
-    write8(y1 >> 8);
-    write8(y1);
-    write8(y2 >> 8);
-    write8(y2);
+    write8((uint8_t)(y1 >> 8));
+    write8((uint8_t)y1);
+    write8((uint8_t)(y2 >> 8));
+    write8((uint8_t)y2);
     return;
 }
 
@@ -110,9 +110,9 @@ void lcd_init(void)
     return;
 }
 
-void drawPixel(uint16_t x3,uint16_t y3, uint16_t color1)
+void drawPixel(uint16_t x3, uint16_t y3, uint16_t color1)
 {	
-    if ((x3 < 0) ||(x3 >= TFTWIDTH) || (y3 < 0) || (y3 >= TFTHEIGHT))
+    if ((x3 >= TFTWIDTH) || (y3 >= TFTHEIGHT))
 	{
 		return;
 	}
@@ -122,18 +122,18 @@ void drawPixel(uint16_t x3,uint16_t y3, uint16_t color1)
     write8(0x2C);
 	
 	CD = __DATA__;
-	write8(color1>>8);
-    write8(color1); 	 
+	write8((uint8_t)(color1>>8));
+    write8((uint8_t)color1); 	 
     return;
 } 
 
 void drawCircle(uint16_t x0, uint16_t y0, uint16_t r, uint16_t color)
 {
-	int f = 1 - r;
-    int ddF_x = 1;
-    int ddF_y = -2 * r;
-    int x = 0;
-    int y = r;
+	uint16_t f = 1 - r;
+    uint16_t ddF_x = 1;
+    uint16_t ddF_y = -2 * r;
+    uint16_t x = 0;
+    uint16_t y = r;
 
     
     drawPixel(x0  , y0+r, color);
@@ -142,7 +142,7 @@ void drawCircle(uint16_t x0, uint16_t y0, uint16_t r, uint16_t color)
     drawPixel(x0-r, y0  , color);
 
     while (x<y) {
-        if (f >= 0) {
+        if ((int)f >= 0) {
             y--;
             ddF_y += 2;
             f += ddF_y;
@@ -192,24 +192,25 @@ void fillRect(uint16_t x, uint16_t y, uint16_t w,uint16_t h,uint16_t color)
 		for(x=w; x>0; x--)
 		{
 			
-			write8(color>>8); 
-            write8(color);
+			write8((uint8_t)(color>>8)); 
+            write8((uint8_t)(color));
 		}
 	}
 	//IOM = 1;
 }
 
-void fillScreen(unsigned int Color)
+void fillScreen(uint16_t Color)
 {
 	//unsigned char VH,VL;
-	long len = (long)TFTWIDTH * (long)TFTHEIGHT;
+	uint32_t len = (uint32_t)TFTWIDTH * (uint32_t)TFTHEIGHT;
 	
-	 int blocks;
+	int blocks;
 	
-   unsigned char  i, hi = Color >> 8,
-              lo = Color;
+   uint8_t  i, 
+           hi = (uint8_t)(Color >> 8),
+           lo = (uint8_t)Color;
 	
-    blocks = (uint16_t)(len / 64); // 64 pixels/block
+    blocks = (int)(len / 64); // 64 pixels/block
 	setAddrWindow(0,0,TFTWIDTH-1,TFTHEIGHT-1);
 	
     CD = __CMD__;
@@ -240,10 +241,7 @@ void fillScreen(unsigned int Color)
 }	
 void drawChar(uint16_t x, uint16_t y, uint8_t c, uint16_t color, uint16_t bg, uint8_t size)
 {
-	if ((x >=TFTWIDTH) || // Clip right
-	    (y >=TFTHEIGHT)           || // Clip bottom
-	    ((x + 6 * size - 1) < 0) || // Clip left
-	    ((y + 8 * size - 1) < 0))   // Clip top
+	if ((0 > (int)x) || ((int)x >=TFTWIDTH) || (0 > (int)y) || ((int)y >=TFTHEIGHT))
 	{
 		return;
 	}

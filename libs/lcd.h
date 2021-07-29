@@ -21,6 +21,9 @@
 #define TFTHEIGHT 240
 #define __CMD__ 0
 #define __DATA__ 1
+# define __ACTIVE__ 0
+# define __IDLE__ 1
+#define _XTAL_FREQ 64000000
 
 
 void setCursor(uint16_t x, uint16_t y);
@@ -33,10 +36,10 @@ void writeRegister8(uint8_t reg, uint8_t data);
 void writeRegister16(uint16_t reg, uint16_t data);
 void setAddrWindow(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2);
 void lcd_init(void);
-void drawPixel(uint16_t x3,uint16_t y3, uint16_t color1);
+void drawPixel(uint16_t x3, uint16_t y3, uint16_t color1);
 void drawCircle(uint16_t x0, uint16_t y0, uint16_t r, uint16_t color);
 void fillRect(uint16_t x, uint16_t y, uint16_t w,uint16_t h,uint16_t color);
-void fillScreen(unsigned int Color);
+void fillScreen(uint16_t Color);
 void drawChar(uint16_t x, uint16_t y, uint8_t c, uint16_t color, uint16_t bg, uint8_t size);
 void lcdWrite(uint8_t c);
 void LCD_string_write(char *str);
