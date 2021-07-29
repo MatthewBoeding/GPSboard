@@ -82,10 +82,13 @@ void portInit(void){
     //UART 1 RX -> RC6
     U1RXPPS = 0x16;
     //UART 1 TX -> RC7
-    RC7PPS = 0x20;   //RC7->UART1:TX1; 
+    RC7PPS = 0x20;   
+    //RC7->UART1:TX1; 
     
-    RC0PPS = 0x32;   //RC0->SPI1:SDO1;    
-    SPI1SCKPPS = 0x11;   //RC1->SPI1:SCK1;
+    RC0PPS = 0x32;   
+    //RC0->SPI1:SDO1;    
+    SPI1SCKPPS = 0x11;   
+    //RC1->SPI1:SCK1;
 }
 
 void uartInit(void){
@@ -186,7 +189,7 @@ void spiInit(void){
     SPI1BAUD = 0x04;
     TRISCbits.TRISC3 = 0;
 	//Turn it on
-	SPICON0bits.EN = 1;
+	SPI1CON0bits.EN = 1;
 }
 void timerInit(void){
     //~4 SECOND DELAY

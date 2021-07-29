@@ -49,6 +49,8 @@
 #include <stdbool.h>
 #include "libs/boardInit.h"
 #include "libs/can.h"
+#include "libs/lcd.h"
+#include "libs/lcd_regs.h"
 
 bool received_flag;
 bool measure_flag;
@@ -84,9 +86,33 @@ void __interrupt(irq(TMR0), irq(CAN)) INTERRUPT_InterruptManager (void)
         //Unhandled Interrupt
     }
 }
+
+void uartWrite(uint8_t txData)
+{
+    while(0 == PIR4bits.U1TXIF)
+    {
+    }
+
+    U1TXB = txData;    // Write the data byte to the USART.
+}
+
+bool uartRecvReady(void)
+{
+    return (bool)(PIR4bits.U1RXIF);
+}
+
+uint8_t uartRecv(void)
+{
+    return U1RXB;
+}
+
 void main(void) {
     //System Setup
     bool setup = boardInit();
+    lcd_init();
+    fillScreen(GRAY);
+    setTextColor(GRAY, RED);
+    LCD_string_write("Begin writing:");
     while(1)
     {
         if (received_flag && setup)
