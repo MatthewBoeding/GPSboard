@@ -1,2 +1,2 @@
 # PIC18_GPSboard
-PIC18F26Q84 convert NMEA GPS over UART to CAN-FD
+Interface PIC18F26Q84 with MAX-M8W-0 over UART to transmit GPS measurements externally via CAN.
