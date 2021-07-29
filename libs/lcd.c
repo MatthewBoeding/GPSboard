@@ -1,10 +1,11 @@
 
 #include <xc.h>
 #include <stdint.h>
+#include <pic18f26q84.h>
 #include "lcd_regs.h"
 #include "lcd.h"
 
-#define CD  LATCbits.LATC4
+#define CD  LATCbits.LATC2
 #define SS  LATCbits.LATC3
 
 uint16_t cursor_x, cursor_y;
@@ -27,10 +28,26 @@ void setTextSize(uint8_t s){
 	textsize = (s>0) ? s : 1 ;
 }
 
+void spiWrite(uint8_t data)
+{
+    int i = 0;
+    while(SPI1STATUSbits.TXBE == 0)
+    {
+        if(i > 100)
+        {
+            SPI1STATUSbits.CLRBF = 1;
+        }
+        __delay_us(10);
+        i++;
+        
+    }
+    SPI1TXB = data;
+    SPI1TCNTL = 1;
+}
+
 void write8(uint8_t data)
 {
-    SPI1TXB = data;
-    __delay_us(10);
+    spiWrite(data);
     return;
 }
 
@@ -38,9 +55,9 @@ void writeRegister8(uint8_t reg, uint8_t data)
 {
     SS = __ACTIVE__;
     CD = __CMD__;
-    SPI1TXB = reg;
+    spiWrite(reg);
     CD = __DATA__;
-    SPI1TXB = data;
+    spiWrite(data);
     return;
 }
 
@@ -51,13 +68,13 @@ void writeRegister16(uint16_t reg, uint16_t data)
     lo = (uint8_t)reg >> 8;
     SS = __ACTIVE__;
     CD = __CMD__;
-    SPI1TXB = hi;
-    SPI1TXB = lo;
+    spiWrite(hi);
+    spiWrite(lo);
     hi = (uint8_t)data;
     lo = (uint8_t)data >> 8;
     CD=__DATA__;
-    SPI1TXB = hi;
-    SPI1TXB = lo;
+    spiWrite(hi);
+    spiWrite(lo);
     return;
 }
 

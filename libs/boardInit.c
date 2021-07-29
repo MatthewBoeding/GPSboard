@@ -2,6 +2,8 @@
 #include <stdbool.h>
 #include "boardInit.h"
 
+#define _XTAL_FREQ 64000000
+
 void interruptInit(void){
     //Global interrupts, no priority
     INTCON0bits.GIE = 1;
@@ -46,10 +48,10 @@ void portInit(void){
     TRISE = 0x08;
     TRISA = 0xFF;
     TRISB = 0xEF;
-    TRISC = 0x7D;
+    TRISC = 0x70;
 
     //Analog select
-    ANSELC = 0xBD;
+    ANSELC = 0xB0;
     ANSELB = 0xF7;
     ANSELA = 0xFF;
 
@@ -190,6 +192,7 @@ void spiInit(void){
     TRISCbits.TRISC3 = 0;
 	//Turn it on
 	SPI1CON0bits.EN = 1;
+    return;
 }
 void timerInit(void){
     //~4 SECOND DELAY
@@ -209,7 +212,7 @@ void timerInit(void){
     //.026214*16 = 4.19 seconds between interrupts
     //TURN ON (16 BIT MODE) 1:16
     T0CON0 = 0X9f; 
-    
+    return;
 }
 
 bool boardInit(void){
@@ -220,6 +223,9 @@ bool boardInit(void){
     uartInit();
     bool success = canInit();
     timerInit();
+    __delay_ms(1);
+    spiInit();
+    __delay_ms(1);
     return success;
 }
 
