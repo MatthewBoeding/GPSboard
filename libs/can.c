@@ -7,10 +7,11 @@ extern uint8_t canMsg[16];
 
 void canReceive(void)
 {
-    uint32_t *FIFO = C1FIFOBA;
+    uint32_t *FIFO;
+    FIFO = C1FIFOBA;
     for(int i = 0; i < 16; i++)
     {
         canMsg[i] = *FIFO;    
-        FIFO = FIFO+1;
+        FIFO++;
     }
 }

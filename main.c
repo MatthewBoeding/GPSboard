@@ -30,12 +30,19 @@
 #include "libs/can.h"
 #include "libs/lcd.h"
 #include "libs/lcd_regs.h"
+#include "libs/uart2.h"
 
 #define _XTAL_FREQ 64000000
 
 bool received_flag;
 bool measure_flag;
+bool validFrame = false;
+bool fixed;
 uint8_t canMsg[16];
+uint8_t frameBuffer[100];
+uint8_t lat[6];
+uint8_t lon[6];
+
 
 
 void TMR0_ISR(void){
@@ -87,9 +94,101 @@ uint8_t uartRecv(void)
     return U1RXB;
 }
 
+uint8_t getFrame(void)
+{
+    bool receive = true;
+    while(receive){
+        if(!uartRecvReady())
+        {
+          __delay_ms(1);
+          if(!uartRecvReady())
+          {
+              receive = false;
+          }
+        }
+        uint8_t frameSize = 0;
+        frameBuffer[frameSize] = uartRecv();
+        frameSize++;
+        if(frameSize == 100){
+            receive = false
+        }
+    }
+}
+
+uint8_t uartFrameBuffer(void){
+    uint8_t frameSize = 0;
+    bool receiving = true;
+    while(receiving){
+        if(uartRecvReady())
+        {
+            //First char of NMEA frames is $. The goal here is to catch the beginning of a frame
+            //We will keep entering this loop until beginning of frame is captured
+            if(uartRecv() == '$'){
+                frameSize = getFrame();
+            }
+        } else
+        {
+            __delay_ms(1);
+            if(!uartRecvReady())
+            {
+                receiving = false;
+            }
+        }
+    }
+    return frameSize;
+}
+
+
+void processFrame(uint8_t size)
+{
+    bool valid = true;
+    uint8_t header[] = "GNGLL";
+    for (int i=0; i<5; i++){
+        if(header[i] != frameBuffer[i])
+        {
+            valid = false;
+        }
+    }
+    if(valid){
+        uint8_t commas[7];
+        int i,j = 0;
+        while(i<7 && j <100)
+        {
+            if(frameBuffer[j] == ',')
+            {
+                commas[i] = j;
+                i++;
+            }
+            j++;
+        }
+        if(frameBuffer[(commas[5]+1)] == 'V' || (commas[1] - commas[0] < 2))
+        {
+            fixed = false;
+            lat = ["0","0",".","0","0","N"];
+            lon = ["0","0","0",".","0","E"];                
+        } else
+        {
+            lat[0] = frameBuffer[commas[0]+1];
+            lat[1] = frameBuffer[commas[0]+2];
+            lat[2] = '.';
+            lat[3] = frameBuffer[commas[0]+3];
+            lat[4] = frameBuffer[commas[0]+4];
+            lat[5] = frameBuffer[commas[1]+1];
+            
+            lon[0] = frameBuffer[commas[2]+1];
+            lon[1] = frameBuffer[commas[2]+2];
+            lon[2] = frameBuffer[commas[2]+3];
+            lon[3] = '.';
+            lon[4] = frameBuffer[commas[2]+4];
+            lon[5] = frameBuffer[commas[3]+1];
+        }
+    }
+}
+
 void main(void) {
     //System Setup
     bool setup = boardInit();
+    uint8_t frameSize = 0;
     lcd_init();
     fillScreen(GRAY);
     setTextColor(GRAY, RED);
@@ -103,7 +202,12 @@ void main(void) {
         }
         if (measure_flag)
         {
-            measure_flag = false;
+            frameSize = uartFrameBuffer();
+            if (frameSize > 0)
+            {
+                measure_flag = false;
+                processFrame(frameSize);
+            }
         }
     }
 }
