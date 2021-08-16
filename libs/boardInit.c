@@ -149,6 +149,18 @@ bool canInit(void)
     // Transmit Queue disabled 
     C1CONU = 0x00;
     //CAN-baud and sampling configuration
+    
+    // TX FIFO ENABLE
+    // TXATIE disabled; TXQEIE disabled; TXQNIE disabled; 
+    C1TXQCONL = 0x00;
+    // FRESET enabled; UINC disabled; 
+    C1TXQCONH = 0x04;
+    // TXAT 3; TXPRI 1; 
+    C1TXQCONU = 0x60;
+    // PLSIZE 8; FSIZE 2; 
+    C1TXQCONT = 0x01;
+    
+    
     // SJW 5; 
     C1NBTCFGL = 0x05;    
     // TSEG2 5; 

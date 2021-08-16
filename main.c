@@ -39,10 +39,12 @@ bool measure_flag;
 bool validFrame = false;
 bool fixed;
 uint8_t canMsg[16];
+
 uint8_t frameBuffer[100];
 uint8_t lat[6];
 uint8_t lon[6];
-
+uint8_t fixedlat = ["0","0",".","0","0","N"];
+uint8_t fixedlon = ["0","0","0",".","0","E"];  
 
 
 void TMR0_ISR(void){
@@ -163,9 +165,7 @@ void processFrame(uint8_t size)
         }
         if(frameBuffer[(commas[5]+1)] == 'V' || (commas[1] - commas[0] < 2))
         {
-            fixed = false;
-            lat = ["0","0",".","0","0","N"];
-            lon = ["0","0","0",".","0","E"];                
+            fixed = false;              
         } else
         {
             lat[0] = frameBuffer[commas[0]+1];
@@ -207,6 +207,7 @@ void main(void) {
             {
                 measure_flag = false;
                 processFrame(frameSize);
+                
             }
         }
     }
