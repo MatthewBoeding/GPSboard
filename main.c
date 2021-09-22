@@ -29,7 +29,6 @@
 #include <stdbool.h>
 #include "libs/boardInit.h"
 #include "libs/can.h"
-#include "libs/uart2.h"
 #include "libs/can_types.h"
 
 #define _XTAL_FREQ 64000000
