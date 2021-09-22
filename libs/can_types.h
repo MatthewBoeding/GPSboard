@@ -67,11 +67,11 @@ typedef union
     uint8_t msgfields;
     struct
     {
-        uint8_t idType:1;       // 1 bit (Standard Frame or Extended Frame)
-        uint8_t frameType:1;    // 1 bit (Data Frame or RTR Frame)
-        uint8_t dlc:4;          // 4 bit (No of data bytes a message frame contains)
-        uint8_t formatType:1;   // 1 bit (CAN 2.0 Format or CAN_FD Format)
-        uint8_t brs:1;          // 1 bit (Bit Rate Switch)
+        uint8_t idType:1;       // 1 bit (Standard Frame or Extended Frame) 0
+        uint8_t frameType:1;    // 1 bit (Data Frame or RTR Frame) 0 
+        uint8_t dlc:4;          // 4 bit (No of data bytes a message frame contains) 0x8
+        uint8_t formatType:1;   // 1 bit (CAN 2.0 Format or CAN_FD Format) 0
+        uint8_t brs:1;          // 1 bit (Bit Rate Switch) 0
     };
 } CAN_MSG_FIELD;
 

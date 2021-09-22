@@ -53,7 +53,7 @@
 
 #include <stdbool.h>
 #include <stdint.h>
-#include "libs/can_types.h"
+#include "can_types.h"
 
 // Transmit FIFO's Custom Name
 #define CAN1_TX_TXQ TXQ
@@ -103,7 +103,7 @@ typedef enum
     }
     </code> 
 */
-void CAN1_Initialize(void);
+bool CAN1_Initialize(void);
 
 /**
   @Summary

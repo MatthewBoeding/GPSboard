@@ -1,7 +1,8 @@
 #include <xc.h>
 #include <stdbool.h>
+#include <pic18f26q84.h>
 #include "boardInit.h"
-
+#include "can.h"
 #define _XTAL_FREQ 64000000
 
 void interruptInit(void){
@@ -24,35 +25,41 @@ void oscInit(void){
 }
 
 void pmdInit(void){
+    // CLKRMD CLKR enabled; SYSCMD SYSCLK enabled; SCANMD SCANNER enabled; FVRMD FVR enabled; IOCMD IOC enabled; CRCMD CRC enabled; HLVDMD HLVD enabled; 
     PMD0 = 0x00;
-    //Enable Timer 0
-    PMD1 = 0xFE;
-    //Enable CAN
+    // TMR0MD TMR0 enabled; TMR1MD TMR1 enabled; TMR4MD TMR4 enabled; SMT1MD SMT1 enabled; TMR5MD TMR5 enabled; TMR2MD TMR2 enabled; TMR3MD TMR3 enabled; TMR6MD TMR6 enabled; 
+    PMD1 = 0x00;
+    // TU1MD UT16A enabled; CANMD CAN enabled; TU2MD UT16B enabled; 
     PMD2 = 0x00;
-    PMD3 = 0xE7;
-    PMD4 = 0x7F;
-    PMD5 = 0xF7;
-    // Only enable UART 1 and SPI1
-    PMD6 = 0xF5; 
-    PMD7 = 0xFF;
-    PMD8 = 0xFF;   
+    // ZCDMD ZCD enabled; DACMD DAC enabled; ADCMD ADC enabled; ACTMD ACT enabled; CM2MD CM2 enabled; CM1MD CM1 enabled; 
+    PMD3 = 0x00;
+    // NCO1MD NCO1 enabled; NCO2MD NCO2 enabled; DSM1MD DSM1 enabled; CWG3MD CWG3 enabled; CWG2MD CWG2 enabled; CWG1MD CWG1 enabled; NCO3MD NCO3 enabled; 
+    PMD4 = 0x00;
+    // CCP2MD CCP2 enabled; CCP1MD CCP1 enabled; PWM2MD PWM2 enabled; CCP3MD CCP3 enabled; PWM1MD PWM1 enabled; PWM4MD PWM4 enabled; PWM3MD PWM3 enabled; 
+    PMD5 = 0x00;
+    // U5MD UART5 enabled; U4MD UART4 enabled; U3MD UART3 enabled; U2MD UART2 enabled; U1MD UART1 enabled; SPI2MD SPI2 enabled; SPI1MD SPI1 enabled; I2C1MD I2C1 enabled; 
+    PMD6 = 0x00;
+    // CLC5MD CLC5 enabled; CLC6MD CLC6 enabled; CLC3MD CLC3 enabled; CLC4MD CLC4 enabled; CLC7MD CLC7 enabled; CLC8MD CLC8 enabled; CLC1MD CLC1 enabled; CLC2MD CLC2 enabled; 
+    PMD7 = 0x00;
+    // DMA5MD DMA5 enabled; DMA6MD DMA6 enabled; DMA8MD DMA8 enabled; DMA7MD DMA7 enabled; DMA1MD DMA1 enabled; DMA2MD DMA2 enabled; DMA3MD DMA3 enabled; DMA4MD DMA4 enabled; 
+    PMD8 = 0x00;
 }
 
 void portInit(void){
     //Latch setup
     LATA = 0x00;
     LATB = 0x00;
-    LATC = 0x00;
+    LATC = 0x80;
 
     //Tristate (input/output)
     TRISE = 0x08;
     TRISA = 0xFF;
-    TRISB = 0xEF;
-    TRISC = 0x70;
+    TRISB = 0xF7;
+    TRISC = 0xB1;
 
     //Analog select
-    ANSELC = 0xB0;
-    ANSELB = 0xF7;
+    ANSELC = 0x00;
+    ANSELB = 0xEF;
     ANSELA = 0xFF;
 
     //Weak pull-up
@@ -77,15 +84,13 @@ void portInit(void){
     ODCONB = 0x00;
     ODCONC = 0x00;
     
-    //can 1 RX -> RB3
-    CANRXPPS = 0x0B;  
-    //can 1 TX -> RB4
-    RB4PPS = 0x46;
-    //UART 1 RX -> RC6
-    U1RXPPS = 0x16;
-    //UART 1 TX -> RC7
-    RC7PPS = 0x20;   
-    //RC7->UART1:TX1; 
+    //can 1 RX -> RB4
+    RB3PPS = 0x46;
+    //can 1 TX -> RB3
+    CANRXPPS = 0x0C;  
+    
+    RC6PPS = 0x20;   //RC6->UART1:TX1;    
+    U1RXPPS = 0x17;   //RC7->UART1:RX1;   
     
     RC0PPS = 0x32;   
     //RC0->SPI1:SDO1;    
@@ -94,27 +99,41 @@ void portInit(void){
 }
 
 void uartInit(void){
-    //No need for parameters 
+    // Disable interrupts before changing states
+
+    // Set the UART1 module to the options selected in the user interface.
+
+    // P1L 0; 
     U1P1L = 0x00;
+    // P1H 0; 
     U1P1H = 0x00;
-    U1P2L = 0x00; 
+    // P2L 0; 
+    U1P2L = 0x00;
+    // P2H 0; 
     U1P2H = 0x00;
+    // P3L 0; 
     U1P3L = 0x00;
+    // P3H 0; 
     U1P3H = 0x00;
-    //Using 8-bit no parity no checksum
+    // BRGS high speed; MODE Asynchronous 8-bit mode; RXEN enabled; TXEN enabled; ABDEN disabled; 
     U1CON0 = 0xB0;
+    // RXBIMD Set RXBKIF on rising RX input; BRKOVR disabled; WUE disabled; SENDB disabled; ON enabled; 
     U1CON1 = 0x80;
+    // TXPOL not inverted; FLO off; C0EN Checksum Mode 0; RXPOL not inverted; RUNOVF RX input shifter stops all activity; STP Transmit 1Stop bit, receiver verifies first Stop bit; 
     U1CON2 = 0x00;
-    //no error checking interrupts
-    U1ERRIR = 0x00;
-    U1ERRIE = 0x00;
-    //no auto-baud
-    U1UIR = 0x00;
-    //stop bit checking and no error checking
-    U1FIFO = 0x00;
-    //setup baud (9600 = (16MHz)*4/[16*BRG]) (BRG = 416)
+    // BRGL 130; 
     U1BRGL = 0xA0;
+    // BRGH 6; 
     U1BRGH = 0x01;
+    // STPMD in middle of first Stop bit; TXWRE No error; 
+    U1FIFO = 0x00;
+    // ABDIF Auto-baud not enabled or not complete; WUIF WUE not enabled by software; ABDIE disabled; 
+    U1UIR = 0x00;
+    // ABDOVF Not overflowed; TXCIF 0; RXBKIF No Break detected; RXFOIF not overflowed; CERIF No Checksum error; 
+    U1ERRIR = 0x00;
+    // TXCIE disabled; FERIE disabled; TXMTIE disabled; ABDOVE disabled; CERIE disabled; RXFOIE disabled; PERIE disabled; RXBKIE disabled; 
+    U1ERRIE = 0x00;
+    return;
 }
 
 bool canSetOP(uint8_t code){
@@ -141,7 +160,7 @@ bool canInit(void)
     complete = canSetOP(4);
     if (complete){
     //Starting memory base for FIFO
-    C1FIFOBA = 0x3800;
+    C1FIFOBA = 0x2600;
     // Internal clock, exception is form error; ISOCRC enabled; devicenet disabled; 
     C1CONL = 0x60;
     // ON enabled; FRZ disabled; SIDL disabled; BRSDIS enabled; WFT T11 Filter; WAKFIL enabled; 
@@ -214,8 +233,8 @@ void timerInit(void){
     T0CON1 = 0X66;    
     //16MHz/64 = 250KHz
     //TMR0 = 65535 / 250KHZ = .026214 sec
-    TMR0H = 0XFF;
-    TMR0L = 0XFF;
+    TMR0H = 0X3C;
+    TMR0L = 0XB0;
     
     PIR3bits.TMR0IF = 0;
     //Timer 0 interrupt
@@ -229,14 +248,13 @@ void timerInit(void){
 
 bool boardInit(void){
     interruptInit();
-    portInit();
-    pmdInit();
     oscInit();
+    pmdInit();
+    portInit();
     uartInit();
-    bool success = canInit();
+    bool success = CAN1_Initialize();
+    //bool success = canInit();
     timerInit();
-    __delay_ms(1);
-    spiInit();
     __delay_ms(1);
     return success;
 }

@@ -46,8 +46,9 @@
 
 #include <xc.h>
 #include <stdint.h>
+#include <stdbool.h>
 #include <string.h>
-#include "libs/can.h"
+#include "can.h"
 
 #define RX_FIFO_MSG_DATA                (8U)
 #define NUM_OF_RX_FIFO                  (1U)
@@ -181,7 +182,7 @@ static void CAN1_BitRateConfiguration(void)
 }
 
 
-void CAN1_Initialize(void)
+bool CAN1_Initialize(void)
 {
     /* Enable the CAN module */
     C1CONHbits.ON = 1;
@@ -189,7 +190,7 @@ void CAN1_Initialize(void)
     if (CAN_OP_MODE_REQUEST_SUCCESS == CAN1_OperationModeSet(CAN_CONFIGURATION_MODE))
     {
         /* Initialize the C1FIFOBA with the start address of the CAN FIFO message object area. */
-        C1FIFOBA = 0x3800;
+        C1FIFOBA = 0x2600;
         
         // CLKSEL0 disabled; PXEDIS enabled; ISOCRCEN enabled; DNCNT 0; 
         C1CONL = 0x60;
@@ -205,8 +206,9 @@ void CAN1_Initialize(void)
         CAN1_RX_FIFO_Configuration();
         CAN1_RX_FIFO_FilterMaskConfiguration();
         CAN1_RX_FIFO_ResetInfo();
-        CAN1_OperationModeSet(CAN_NORMAL_2_0_MODE);    
+        CAN1_OperationModeSet(CAN_NORMAL_2_0_MODE); 
     }
+        return (C1CONTbits.REQOP == C1CONUbits.OPMOD);
 }
 
 CAN_OP_MODE_STATUS CAN1_OperationModeSet(const CAN_OP_MODES requestMode)
@@ -219,8 +221,8 @@ CAN_OP_MODE_STATUS CAN1_OperationModeSet(const CAN_OP_MODES requestMode)
             || CAN_CONFIGURATION_MODE == requestMode)
     {
         C1CONTbits.REQOP = requestMode;
-        
-        while (C1CONUbits.OPMOD != requestMode)
+        uint32_t helper = 0;
+        while (C1CONUbits.OPMOD != requestMode && helper < 90000)
         {
             //This condition is avoiding the system error case endless loop
             if (1 == C1INTHbits.SERRIF)
@@ -228,6 +230,7 @@ CAN_OP_MODE_STATUS CAN1_OperationModeSet(const CAN_OP_MODES requestMode)
                 status = CAN_OP_MODE_SYS_ERROR_OCCURED;
                 break;
             }
+            helper++;
         }
     }
     else
