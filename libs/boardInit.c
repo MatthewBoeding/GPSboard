@@ -84,10 +84,8 @@ void portInit(void){
     ODCONB = 0x00;
     ODCONC = 0x00;
     
-    //can 1 RX -> RB4
-    RB3PPS = 0x46;
-    //can 1 TX -> RB3
-    CANRXPPS = 0x0C;  
+    RB3PPS = 0x46;   //RB3->CAN1:CANTX;  
+    CANRXPPS = 0x0C;   //RB4->CAN1:CANRX;  
     
     RC6PPS = 0x20;   //RC6->UART1:TX1;    
     U1RXPPS = 0x17;   //RC7->UART1:RX1;   
@@ -189,7 +187,7 @@ bool canInit(void)
     // BRP 0; 
     C1NBTCFGT = 0x00;
     
-    complete = canSetOP(5);
+    complete = canSetOP(6);
     }
     
     //Set as receive queue, interrupt for FIFO not empty

@@ -209,11 +209,6 @@ void main(void) {
     //System Setup
     bool setup = boardInit();
     gpsInit();
-    while(!uartRecvReady()){
-        __delay_ms(10);
-        gpsInit();
-    }
-    gpsInit();
     uint8_t frameSize = 0;
     while(1)
     {
@@ -226,9 +221,11 @@ void main(void) {
                 processFrame(frameSize);
                 if(!setup){
                     setup = CAN1_Initialize();
+                    LATCbits.LATC3 = 1;
                 }
                 if(setup)
                 {
+                    LATCbits.LATC3 = 0;
                     CAN_MSG_OBJ msg;
                     msg.msgId = 0x101;          // 29 bit (SID: 11bit, EID:18bit)
                     
@@ -236,9 +233,9 @@ void main(void) {
                     msg.data = lat;           // Pointer to message data
 
                     CAN1_Transmit(0, &msg);
-                    __delay_ms(1000);
                     msg.data = lon;    
                     CAN1_Transmit(0, &msg);
+                    LATCbits.LATC3 = 1;
                 }
             }
         }
