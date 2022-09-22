@@ -1,6 +1,7 @@
 # GPS Board V2.0
 This board was designed for ECEN-4350 at the University of Nebraska-Lincoln (Scott Campus), so I will not be updating once completed. 
 If a new design is required in the future, I will place it here. 
+R1-R3 = 1kΩ, L2 = 5.6nH, C1 = 0Ω, C2 = 1.8 pF, C3 = 1µF
 
 ## Connections
 ![Schematic](gps.schematic.png?raw=true)
