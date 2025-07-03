@@ -1,0 +1,15 @@
+﻿Designator,Footprint,Quantity,Value,Man. Part #,Price $ (Per 10),Mouser Link
+A1,L000953-01,1,~,L000953-01,3.16,https://www.mouser.com/ProductDetail/TE-Connectivity-Linx-Technologies/L000953-01?qs=NeOn4crkEuux4NJvyI7enQ%3D%3D
+"C3, C4",805,2,.1uf,0805ZD104KAT2A,0.04,https://www.mouser.com/ProductDetail/KYOCERA-AVX/0805ZD104KAT2A?qs=qVfB0%2FDaMDZM7gCosjcOHQ%3D%3D
+D1,805,1,LED_Green,LTST-S220GKT,0.095,https://www.mouser.com/ProductDetail/LITEON/LTST-S220GKT?qs=NUb82WqeCyoiEaTE8OXgMg%3D%3D
+IC2,SOIC127P600X175-8N,1,SN65HVD231QDR,SN65HVD231QDR,2.63,https://www.mouser.com/ProductDetail/Texas-Instruments/SN65HVD231QDR?qs=QViXGNcIEAvbXcoRvmoe%2Fw%3D%3D
+IC3,SOP65P780X200-28N,1,PIC18F26Q84-I_SS,PIC18F26Q84-I/SS,1.51,https://www.mouser.com/ProductDetail/Microchip-Technology/PIC18F26Q84-I-SS?qs=vmHwEFxEFR9EJRaEYV5gAQ%3D%3D
+"J1, J2",PinHeader_1x02_P2.54mm_Vertical,2,~,,,
+J3,JST_SH_SM04B-SRSS-TB_1x04-1MP_P1.00mm_Horizontal,1,~,,,
+J4,PinHeader_1x05_P2.54mm_Vertical,1,,M20-9992046 (20 pos),0.576,https://www.mouser.com/ProductDetail/Harwin/M20-9992046?qs=%252Bk6%2F5FB6qrkVgm0dNoxueg%3D%3D
+"R10, R6, R9",805,3,120R,RT0805FRE13120RL,0.035,https://www.mouser.com/ProductDetail/YAGEO/RT0805FRE13120RL?qs=1mbolxNpo8ewZR92p1jJeQ%3D%3D
+"R7, R8",805,2,10k,RT0805DRE0710KL,0.023,https://www.mouser.com/ProductDetail/YAGEO/RT0805DRE0710KL?qs=%2Ff7pOCXLR5e34KOT0xwLAQ%3D%3D
+U5,ublox_MAX,1,MAX-M8W,MAX-M8W-0,23.97,https://www.mouser.com/ProductDetail/u-blox/MAX-M8W-0?qs=sGAEpiMZZMu3sxpa5v1qrkD3WkoL55j%252BtumybzaKKKw%3D
+,,,,,,
+,,,,,,
+,,,,Parts Cost (per 1 board):,32.039,
