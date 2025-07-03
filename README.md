@@ -4,7 +4,7 @@ This board was designed for ECEN-435 at the University of Nebraska-Lincoln (Scot
 
 ## Connections
 
-![schematic](assets/sch.pdf)
+![schematic](assets/sch.png)
 
 ## Board
 
