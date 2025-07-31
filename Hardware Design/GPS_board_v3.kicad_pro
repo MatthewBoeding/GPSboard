@@ -480,7 +480,7 @@
       "gencad": "",
       "idf": "",
       "netlist": "",
-      "plot": "v3.0_r1.1_gps_board_gerbers/",
+      "plot": "../Production Files/v3.0_r1.1_gps_board_gerbers/",
       "pos_files": "",
       "specctra_dsn": "",
       "step": "",
