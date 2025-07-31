@@ -8,7 +8,7 @@ This board was designed for ECEN-435 at the University of Nebraska-Lincoln (Scot
 
 ## Board
 
-![board](assets/board.png)
+
 
 ## Issues and Troubleshooting
 Testing is underway with more updates to come.
