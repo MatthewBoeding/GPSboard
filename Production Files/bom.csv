@@ -1,0 +1,15 @@
+﻿Designator,Footprint,Quantity,Value,Man. Part #,Price $ (at 10 quantity),Mouser Link
+A1,L000953-01,1,~,L000953-01,3.16,https://www.mouser.com/ProductDetail/TE-Connectivity-Linx-Technologies/L000953-01?qs=NeOn4crkEuux4NJvyI7enQ%3D%3D
+"C1, C2",805,2,.1uF,0805ZD104KAT2A,0.04,https://www.mouser.com/ProductDetail/KYOCERA-AVX/0805ZD104KAT2A?qs=qVfB0%2FDaMDZM7gCosjcOHQ%3D%3D
+D1,805,1,LED_Green,LTST-S220GKT,0.095,https://www.mouser.com/ProductDetail/LITEON/LTST-S220GKT?qs=NUb82WqeCyoiEaTE8OXgMg%3D%3D
+IC2,SOIC127P600X175-8N,1,SN65HVD231QDR,SN65HVD231QDR,2.63,https://www.mouser.com/ProductDetail/Texas-Instruments/SN65HVD231QDR?qs=QViXGNcIEAvbXcoRvmoe%2Fw%3D%3D
+"J1, J2",PinHeader_1x02_P2.54mm_Vertical,2,~,,,
+J3,PinHeader_1x04_P2.54mm_Vertical,1,~,,,
+J4,PinHeader_1x05_P2.54mm_Vertical,1,~,M20-9992046,0.589,https://www.mouser.com/ProductDetail/Harwin/M20-9992046?qs=%252Bk6%2F5FB6qrkVgm0dNoxueg%3D%3D
+"R1, R8",805,2,10k,RT0805DRE0710KL,0.023,https://www.mouser.com/ProductDetail/YAGEO/RT0805DRE0710KL?qs=%2Ff7pOCXLR5e34KOT0xwLAQ%3D%3D
+"R10, R9",805,2,120R,RT0805FRE13120RL,0.035,https://www.mouser.com/ProductDetail/YAGEO/RT0805FRE13120RL?qs=1mbolxNpo8ewZR92p1jJeQ%3D%3D
+U1,TSSOP-20_4.4x6.5mm_P0.65mm,1,STM32F042F4Px,STM32F042F4P6,2.14,https://www.mouser.com/ProductDetail/STMicroelectronics/STM32F042F4P6?qs=4b8myOmUP%252BvvhAaQx2eFdg%3D%3D
+U5,ublox_MAX_gps,1,MAX-M8C,MAX-M8C-0,16.2,https://www.mouser.com/ProductDetail/u-blox/MAX-M8C-0?qs=DPoM0jnrROVJTO3yBNKlcw%3D%3D
+,,,,,,
+,,,,,,
+,,,,Price $ (at 10 board quantity):,24.58805,
